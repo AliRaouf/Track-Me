@@ -29,19 +29,26 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: Color(0xfffafafa),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: ListView(children: [Row(
+        child: ListView(children: [Stack(
           children: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  },
-              icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+              Center(
+                child: Container(
+                    child: Image.asset(
+                  "assets/images/logo.png",
+                )
+                ),
+              ),
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+              ],
+            ),
           ],
         ),
-          Container(
-              child: Image.asset(
-            "assets/images/logo.png",
-          )),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -61,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: screenWidth * 0.8,
                 height: screenHeight * 0.09,
                 margin: EdgeInsets.only(
-                    bottom: screenHeight * 0.04),
+                    bottom: screenHeight * 0.06),
                 child: CustomTextFormField(
                   hint: "Password",
                   controller: passwordController,
