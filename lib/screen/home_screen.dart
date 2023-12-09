@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:track_me/blocs/user/user_cubit.dart';
 import 'package:track_me/components/gradient_text.dart';
 
 import '../components/custom_container.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    var cubit=UserCubit.get(context);
+    return BlocBuilder<UserCubit, UserState>(
+  builder: (context, state) {
     return Scaffold(
       backgroundColor: Color(0xfffafafa),
       appBar: AppBar(
@@ -18,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Color(0xfffafafa),
         iconTheme: IconThemeData(color: Color(0xff00A4FB)),
         title: GradientText(
-          "Welcome Ali",
+          "Welcome ${cubit.userName??""}",
           style: GoogleFonts.itim(fontWeight: FontWeight.bold),
           gradient: LinearGradient(
             colors: [Color(0xff00a4fb), Color(0xff00fb93)],
@@ -42,9 +52,13 @@ class HomeScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Ali Raouf Ahmed",
-                style: GoogleFonts.itim(fontWeight: FontWeight.bold),
+              child: Row(
+                children: [
+                  Text(
+                    "  ${cubit.userName??""}",
+                    style: GoogleFonts.itim(fontSize: 25),
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -131,5 +145,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

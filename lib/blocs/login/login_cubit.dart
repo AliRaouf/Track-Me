@@ -24,7 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoadingState());
     FirebaseAuth.instance.signInAnonymously()
     .then((value){
-    emit(LoginSuccessState());
+    emit(GuestLoginSuccessState());
     }).catchError((error){
     emit(LoginErrorState(error));
     });

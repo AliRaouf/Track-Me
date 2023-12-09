@@ -4,6 +4,7 @@ import 'package:track_me/blocs/login/login_cubit.dart';
 import 'package:track_me/components/custom_form_text_field.dart';
 import 'package:track_me/screen/home_screen.dart';
 
+import '../blocs/user/user_cubit.dart';
 import '../components/gradient_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,12 +25,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = LoginCubit.get(context);
+    var loginCubit = LoginCubit.get(context);
+    var userCubit = UserCubit.get(context);
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<LoginCubit, LoginState>(
   listener: (context, state) {
     if(state is LoginSuccessState){
+      userCubit.getUserData();
+      userCubit.receiverUserName();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Welcome To Track Me")));
       Navigator.push(
           context,
@@ -105,7 +109,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 screenHeight: screenHeight * 0.075,
                 text: 'Login',
                 onpressed: () {
-                  cubit.loginUser(emailController.text, passwordController.text);
+
+                  loginCubit.loginUser(emailController.text, passwordController.text);
                 },
               ),
             ],

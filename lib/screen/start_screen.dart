@@ -17,7 +17,7 @@ class StartScreen extends StatelessWidget {
     var cubit=LoginCubit.get(context);
     return BlocConsumer<LoginCubit, LoginState>(
   listener: (context, state) {
-    if(state is LoginSuccessState){
+    if(state is GuestLoginSuccessState){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Signed in with a temporary account")));
       Navigator.push(
           context,
