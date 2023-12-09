@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GradientButton extends StatelessWidget {
   const GradientButton({
@@ -29,7 +30,7 @@ class GradientButton extends StatelessWidget {
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30)))),
         onPressed:onpressed,
-        child: Text(text,style: TextStyle(color: Color(0xfffafafa),fontSize: 22),),
+        child: Text(text,style: GoogleFonts.itim(color: Color(0xfffafafa),fontSize: 22),),
       ),
     );
   }

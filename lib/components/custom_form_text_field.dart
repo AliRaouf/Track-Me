@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFormField extends StatelessWidget {
   String? hint;
@@ -31,7 +32,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
           hintText: hint,
           labelText: label,
-          labelStyle: TextStyle(fontSize: 18),
+          labelStyle: GoogleFonts.itim(fontSize: 18),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),

@@ -4,6 +4,7 @@ import 'package:track_me/blocs/register/register_cubit.dart';
 import 'package:track_me/components/custom_form_text_field.dart';
 
 import '../components/gradient_button.dart';
+import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -39,6 +40,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   listener: (context, state) {
     if(state is RegisterSuccessState){
       cubit.showSnackBar(context, "Account Created Successfully");
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()));
     }else if(state is RegisterErrorState){
       cubit.showSnackBar(context, state.error.toString());
     }
