@@ -72,7 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Container(
                 width: screenWidth * 0.8,
-                height: screenHeight * 0.09,
                 margin: EdgeInsets.only(
                     bottom: screenHeight * 0.04),
                 child: CustomTextFormField(
@@ -84,7 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Container(
                 width: screenWidth * 0.8,
-                height: screenHeight * 0.09,
                 margin: EdgeInsets.only(
                     bottom: screenHeight * 0.06),
                 child: CustomTextFormField(

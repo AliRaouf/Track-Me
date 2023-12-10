@@ -29,7 +29,7 @@ class CustomTextFormField extends StatelessWidget {
           return "field is required";
         }
       },
-      decoration: InputDecoration(
+      decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(vertical:10,horizontal: 10),
           hintText: hint,
           labelText: label,
           labelStyle: GoogleFonts.itim(fontSize: 18),
@@ -44,7 +44,10 @@ class CustomTextFormField extends StatelessWidget {
           suffixIconColor:iconColor
       ,focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(30),
-          borderSide: const BorderSide(color: Colors.black))
+          borderSide: const BorderSide(color: Colors.black)),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: const BorderSide(color: Colors.black))
       ),
     );
   }
