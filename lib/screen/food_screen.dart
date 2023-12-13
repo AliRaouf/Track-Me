@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:track_me/components/food_list.dart';
+import 'package:track_me/blocs/food/food_cubit.dart';
 
 class FoodScreen extends StatefulWidget {
   const FoodScreen({super.key});
@@ -19,8 +20,14 @@ Food FoodView = Food.Recipe;
 class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
+    var searchController = TextEditingController();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    var cubit=FoodCubit.get(context);
+    return BlocConsumer<FoodCubit, FoodState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -77,13 +84,16 @@ class _FoodScreenState extends State<FoodScreen> {
                   ),
                 ],
               ),
-              child: TextField(
+              child: TextField(controller:searchController,
                   decoration: InputDecoration(
                 hintText: "Search Here!",
                 hintStyle: GoogleFonts.itim(fontSize: 18),
                 contentPadding: EdgeInsets.symmetric(horizontal: 8),
                 suffixIcon: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      cubit.getRecipe(searchController.text);
+                      print(searchController.text);
+                    },
                     icon: Icon(Icons.search),
                     color: Color(0xffF49E47)),
                 focusedBorder: OutlineInputBorder(
@@ -120,5 +130,7 @@ class _FoodScreenState extends State<FoodScreen> {
             )
           ]),
         ));
+  },
+);
   }
 }
