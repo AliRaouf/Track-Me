@@ -6,17 +6,17 @@ class FoodDio {
   static Dio? dio;
   static init() {
     dio = Dio(BaseOptions(
-      baseUrl: "https://api.spoonacular.com/recipes/complexSearch",
+      baseUrl: "https://api.spoonacular.com",
       receiveDataWhenStatusError: true,
     ));
   }
 
-  static Future<Response> getData(search) async {
+  static Future<Response> getData(search,type) async {
     {
       if(dio==null){
         init();
       }
-      return await dio!.get("https://api.spoonacular.com/recipes/complexSearch?apiKey=$apiKey&addRecipeNutrition=true&query=$search");
+      return await dio!.get("https://api.spoonacular.com$type?apiKey=$apiKey&addRecipeNutrition=true&query=$search");
     }
 
   }
