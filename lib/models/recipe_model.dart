@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 class RecipeModel {
   List<Results>? results;

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/food/food_cubit.dart';
+import 'package:track_me/screen/single_food_screen.dart';
+
+import '../components/food_container.dart';
 
 class FoodScreen extends StatefulWidget {
   const FoodScreen({super.key});
@@ -29,6 +32,7 @@ class _FoodScreenState extends State<FoodScreen> {
       builder: (context, state) {
         return Scaffold(
             appBar: AppBar(
+              backgroundColor: Color(0xfffafafa),
               centerTitle: true,
               leading: IconButton(
                   color: Color(0xffFF8000),
@@ -126,132 +130,45 @@ class _FoodScreenState extends State<FoodScreen> {
                                     cubit.recipeModel?.results?.length ?? 0,
                                 physics: BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  return Container(
-                                    height: screenHeight * 0.1,
-                                    margin: EdgeInsets.symmetric(vertical: 8),
-                                    decoration: BoxDecoration(
-                                        color: Color(0xffFFD37E),
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 16.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Flexible(
-                                                child: Text(
-                                                  "${cubit.recipeModel?.results?[index].title}",
-                                                  style: GoogleFonts.itim(
-                                                      fontSize: 16,
-                                                      color: Color(0xff252525),
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ),
-                                            ],
+                                  return FoodContainer(
+                                    ontap: (){
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => SingleFoodScreen(
+                                            recipe: cubit.recipeModel,
+                                            index: index,
                                           ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: screenWidth * 0.255,
-                                                child: Text(
-                                                    "Cal:${cubit.recipeModel?.results?[index].nutrition?.nutrients?[0].amount}",
-                                                    style: GoogleFonts.itim(
-                                                        fontSize: 12,
-                                                        color:
-                                                            Color(0xff252525))),
-                                              ),
-                                              Container(
-                                                width: screenWidth * 0.26,
-                                                child: Text(
-                                                    "Prot:${cubit.recipeModel?.results?[index].nutrition?.nutrients?[8].amount}",
-                                                    style: GoogleFonts.itim(
-                                                        fontSize: 12,
-                                                        color:
-                                                            Color(0xff252525))),
-                                              ),
-                                              Container(
-                                                width: screenWidth * 0.26,
-                                                child: Text(
-                                                    "Carb:${cubit.recipeModel?.results?[index].nutrition?.nutrients?[3].amount}",
-                                                    style: GoogleFonts.itim(
-                                                        fontSize: 12,
-                                                        color:
-                                                            Color(0xff252525))),
-                                              )
-                                            ],
-                                          )
-                                        ],
+                                        ),
+                                      );
+                                    },
+                                      Height: screenHeight * 0.144,
+                                    title: cubit.recipeModel?.results?[index].title
+                                  ,carbs: cubit.recipeModel?.results?[index].nutrition?.nutrients?[0].amount,
+                                  protein: cubit.recipeModel?.results?[index].nutrition?.nutrients?[8].amount,
+                                  calories: cubit.recipeModel?.results?[index].nutrition?.nutrients?[3].amount,);
+                                }),
+                          )
+                        : cubit.ingredientModel == null
+                            ? SizedBox.shrink()
+                            : FoodContainer(
+                                ontap: (){
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => SingleFoodScreen(
+                                        ingredient: cubit.ingredientModel,
+                                        index: 0,
                                       ),
                                     ),
                                   );
-                                }),
-                          )
-                        : cubit.ingredientModel==null?SizedBox.shrink():
-                Container(
-                            height: screenHeight * 0.1,
-                            width: screenWidth * 0.82,
-                            margin: EdgeInsets.symmetric(vertical: 8),
-                            decoration: BoxDecoration(
-                                color: Color(0xffFFD37E),
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Flexible(
-                                        child: Text(
-                                          "${cubit.ingredientModel?.name}",
-                                          style: GoogleFonts.itim(
-                                              fontSize: 16,
-                                              color: Color(0xff252525),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: screenWidth * 0.255,
-                                        child: Text(
-                                            "Cal:${cubit.ingredientModel?.calories}",
-                                            style: GoogleFonts.itim(
-                                                fontSize: 12,
-                                                color: Color(0xff252525))),
-                                      ),
-                                      Container(
-                                        width: screenWidth * 0.26,
-                                        child: Text(
-                                            "Prot:${cubit.ingredientModel?.proteinG}",
-                                            style: GoogleFonts.itim(
-                                                fontSize: 12,
-                                                color: Color(0xff252525))),
-                                      ),
-                                      Container(
-                                        width: screenWidth * 0.26,
-                                        child: Text(
-                                            "Carb:${cubit.ingredientModel?.carbohydratesTotalG}",
-                                            style: GoogleFonts.itim(
-                                                fontSize: 12,
-                                                color: Color(0xff252525))),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
+                                },
+                                Height: screenHeight * 0.1,
+                                Width: screenWidth * 0.82,
+                                title: cubit.ingredientModel!.name,
+                                calories: cubit.ingredientModel!.calories,
+                                carbs:
+                                    cubit.ingredientModel!.carbohydratesTotalG,
+                                protein: cubit.ingredientModel!.proteinG,
+                              )
               ]),
             ));
       },
