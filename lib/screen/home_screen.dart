@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:track_me/blocs/nutrition/nutrition_cubit.dart';
 import 'package:track_me/blocs/user/user_cubit.dart';
 import 'package:track_me/components/gradient_text.dart';
 import 'package:track_me/screen/food_screen.dart';
+import 'package:track_me/screen/nutrition_screen.dart';
 
 import '../components/custom_container.dart';
 
@@ -15,6 +17,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+NutritionCubit.get(context).receiveFoodList();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -126,7 +133,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   widget: Image.asset("assets/images/avocado.png",
                       fit: BoxFit.fill),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NutritionScreen()));
+                  },
                 ),
                 CustomContainer(
                   screenWidth: screenWidth * 0.9,
