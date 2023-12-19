@@ -20,20 +20,15 @@ class _NutritionScreenState extends State<NutritionScreen> {
   @override
   void initState() {
     NutritionCubit.get(context).getUserData();
+    NutritionCubit.get(context).createNutritionDataSet();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var cubit = NutritionCubit.get(context);
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     var nameController = TextEditingController();
     var descController = TextEditingController();
     var caloriesController = TextEditingController();
@@ -76,32 +71,39 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Name: "),
-                                        TextField(controller: nameController,
+                                        TextField(
+                                          controller: nameController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Description: "),
-                                        TextField(controller: descController,
+                                        TextField(
+                                          controller: descController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Calories: "),
                                         TextField(
@@ -109,68 +111,84 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Protein: "),
-                                        TextField(controller: proteinController,
+                                        TextField(
+                                          controller: proteinController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Carbs: "),
-                                        TextField(controller: carbController,
+                                        TextField(
+                                          controller: carbController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Fiber: "),
-                                        TextField(controller: fiberController,
+                                        TextField(
+                                          controller: fiberController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Fat: "),
-                                        TextField(controller: fatController,
+                                        TextField(
+                                          controller: fatController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
-                                    Row(mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text("Iron: "),
-                                        TextField(controller: ironController,
+                                        TextField(
+                                          controller: ironController,
                                           decoration: InputDecoration(
                                               constraints: BoxConstraints(
                                                   maxWidth: screenWidth * 0.5,
-                                                  maxHeight: screenHeight *
-                                                      0.05)),),
+                                                  maxHeight:
+                                                      screenHeight * 0.05)),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -191,11 +209,11 @@ class _NutritionScreenState extends State<NutritionScreen> {
                               style: ButtonStyle(
                                   shape: MaterialStatePropertyAll(
                                       RoundedRectangleBorder(
-                                          borderRadius: BorderRadius
-                                              .circular(20), side: BorderSide(
-                                          color: Colors.red))),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          side: BorderSide(color: Colors.red))),
                                   backgroundColor:
-                                  MaterialStatePropertyAll(Colors.white))),
+                                      MaterialStatePropertyAll(Colors.white))),
                           ElevatedButton(
                               onPressed: () {
                                 cubit.saveFood(
@@ -207,14 +225,15 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                     fatController.text,
                                     carbController.text,
                                     ironController.text,
-                                    FieldValue.serverTimestamp()
-                                );
+                                    FieldValue.serverTimestamp());
                               },
-                              child: Text("Add",
-                                style: GoogleFonts.itim(color: Colors.white),),
+                              child: Text(
+                                "Add",
+                                style: GoogleFonts.itim(color: Colors.white),
+                              ),
                               style: ButtonStyle(
                                   backgroundColor:
-                                  MaterialStatePropertyAll(Colors.red)))
+                                      MaterialStatePropertyAll(Colors.red)))
                         ],
                       );
                     });
@@ -271,7 +290,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         size: 14,
                         color: Colors.white,
                       ),
-                      text: ' Calories',
+                      text: 'calories',
                       remaining: '0 Remaining',
                       color: Colors.red,
                     ),
@@ -350,14 +369,15 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     Text(
                       "  Food",
                       style: GoogleFonts.itim(
-                          fontWeight: FontWeight.bold, fontSize: 24,color: Color(0xff535707)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: Color(0xff535707)),
                     ),
                   ],
                 ),
                 NutritionFoodList(foodStream: cubit.foodStream!)
               ]),
-            )
-        );
+            ));
       },
     );
   }

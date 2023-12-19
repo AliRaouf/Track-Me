@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
 NutritionCubit.get(context).receiveFoodList();
+
     super.initState();
   }
   @override
