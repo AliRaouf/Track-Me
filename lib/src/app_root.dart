@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:track_me/blocs/exercise/exercise_cubit.dart';
 import 'package:track_me/blocs/food/food_cubit.dart';
 import 'package:track_me/blocs/login/login_cubit.dart';
 import 'package:track_me/blocs/nutrition/nutrition_cubit.dart';
@@ -20,7 +21,8 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context)=>LoginCubit()),
         BlocProvider(create: (context)=>UserCubit()),
         BlocProvider(create: (context)=>FoodCubit()..initApi()),
-        BlocProvider(create: (context)=>NutritionCubit()..getUserData()..receiveFoodList())
+        BlocProvider(create: (context)=>NutritionCubit()..getUserData()..receiveFoodList()),
+        BlocProvider(create: (context)=>ExerciseCubit()),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false,
           home:SplashScreen()),

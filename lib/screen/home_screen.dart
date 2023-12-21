@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/nutrition/nutrition_cubit.dart';
 import 'package:track_me/blocs/user/user_cubit.dart';
 import 'package:track_me/components/gradient_text.dart';
+import 'package:track_me/screen/exercise_screen.dart';
 import 'package:track_me/screen/food_screen.dart';
 import 'package:track_me/screen/nutrition_screen.dart';
 
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
 NutritionCubit.get(context).receiveFoodList();
-
+NutritionCubit.get(context).createNutritionDataSet();
     super.initState();
   }
   @override
@@ -146,7 +147,10 @@ NutritionCubit.get(context).receiveFoodList();
                       image: AssetImage("assets/images/gym.png"),
                       fit: BoxFit.cover),
                   text: 'Search For New Exercises !',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ExerciseScreen()));
+                  },
                 ),
                 Stack(
                   alignment: Alignment.bottomCenter,

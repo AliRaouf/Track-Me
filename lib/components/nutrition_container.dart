@@ -7,12 +7,8 @@ import '../blocs/nutrition/nutrition_cubit.dart';
 class NutritionContainer extends StatelessWidget {
   NutritionContainer({
     super.key,
-    required this.screenHeight,
-    required this.screenWidth,required this.widget, required this.text, required this.remaining, required this.color,
+    required this.widget, required this.text, required this.remaining, required this.color,
   });
-
-  final double screenHeight;
-  final double screenWidth;
   final Widget widget;
   final String text;
   final String remaining;
@@ -21,14 +17,16 @@ class NutritionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return GestureDetector(onTap: (){ {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("Set your$text goal",style: GoogleFonts.itim(),),
+              title: Text("Set your $text goal",style: GoogleFonts.itim(),),
               content: SingleChildScrollView(
-                child: Column(mainAxisSize: MainAxisSize.max,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // Align content to the left
                   children: [
@@ -75,8 +73,10 @@ class NutritionContainer extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {
                       NutritionCubit.get(context).updateNutritionData(
-                          {text:nutritionController.text});
-                    },
+                          {text:int.parse(nutritionController.text)});
+                      NutritionCubit.get(context).receiveNutrition();
+                    Navigator.of(context).pop();
+                      },
                     child: Text(
                       "Update",
                       style: GoogleFonts.itim(color: Colors.white),
@@ -89,7 +89,7 @@ class NutritionContainer extends StatelessWidget {
           });
     }
     },
-      child: Container(height: screenHeight,width: screenWidth,
+      child: Container(height: screenHeight*0.1,width: screenWidth*0.45,
           decoration:BoxDecoration(color: color,borderRadius: BorderRadius.circular(10)),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 4),

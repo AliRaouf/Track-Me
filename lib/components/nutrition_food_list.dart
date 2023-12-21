@@ -45,7 +45,7 @@ class NutritionFoodList extends StatelessWidget {
                                     fontWeight: FontWeight.w500, fontSize: 18),
                               ),
                               Text(
-                               cubit.formatTime(values.docs[index]["date"]),
+                               cubit.formatTime(values.docs[index]["date"]??Timestamp(0,0)),
                               style: GoogleFonts.itim(
                                     fontSize: 12,color: Colors.blueGrey),
                               )
@@ -61,31 +61,31 @@ class NutritionFoodList extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              values.docs[index]["calories"] == null || values.docs[index]["calories"] == ""
+                              values.docs[index]["calories"] == null || values.docs[index]["calories"] == 0
                                   ? SizedBox.shrink()
                                   : Icon(CupertinoIcons.flame_fill,size: 16,
                                       color: Colors.red),
-                              Text("${values.docs[index]["calories"]} "),
-                              values.docs[index]["protein"] == null || values.docs[index]["protein"] == ""
+                              values.docs[index]["calories"] == 0?Text(""):Text("${values.docs[index]["calories"]} "),
+                              values.docs[index]["protein"] == null || values.docs[index]["protein"] == 0
                                   ? SizedBox.shrink()
                                   : Iconify(pIcon,color: Colors.orange,size: 18,),
-                              Text("${values.docs[index]["protein"]} "),
-                              values.docs[index]["carbohydrates"] == null ||values.docs[index]["carbohydrates"] == ""
+                              values.docs[index]["protein"] == 0?Text(""):Text("${values.docs[index]["protein"]} "),
+                              values.docs[index]["carbohydrates"] == null ||values.docs[index]["carbohydrates"] == 0
                                   ? SizedBox.shrink()
                                   : Iconify(cIcon,color: Colors.blue,size: 18),
-                              Text("${values.docs[index]["carbohydrates"]} "),
-                              values.docs[index]["fat"] == null || values.docs[index]["fat"] == ""
+                              values.docs[index]["carbohydrates"] == 0?Text(""):Text("${values.docs[index]["carbohydrates"]} "),
+                              values.docs[index]["fat"] == null || values.docs[index]["fat"] == 0
                                   ? SizedBox.shrink()
                                   : Iconify(fIcon,color: Color(0xff33a3b2),size: 18),
-                              Text("${values.docs[index]["fat"]} "),
-                              values.docs[index]["fiber"] == null || values.docs[index]["fiber"] == ""
+                              values.docs[index]["fat"] == 0?Text(""):Text("${values.docs[index]["fat"]} "),
+                              values.docs[index]["fiber"] == null || values.docs[index]["fiber"] == 0
                                   ? SizedBox.shrink()
                                   : Iconify(leafIcon,color: Colors.green,size: 18),
-                              Text("${values.docs[index]["fiber"]} "),
-                              values.docs[index]["iron"] == null || values.docs[index]["iron"] == ""
+                              values.docs[index]["fiber"] == 0? Text(""):Text("${values.docs[index]["fiber"]} "),
+                              values.docs[index]["iron"] == null || values.docs[index]["iron"] == 0
                                   ? SizedBox.shrink()
                                   : Iconify(ironIcon,color: Color(0xff7da1c3),size: 18),
-                              Text("${values.docs[index]["iron"]} "),
+                              values.docs[index]["iron"] == 0?Text(""):Text("${values.docs[index]["iron"]} "),
                             ],
                           )
                         ],

@@ -20,7 +20,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
   @override
   void initState() {
     NutritionCubit.get(context).getUserData();
-    NutritionCubit.get(context).createNutritionDataSet();
+    NutritionCubit.get(context).receiveNutrition();
     super.initState();
   }
 
@@ -31,12 +31,12 @@ class _NutritionScreenState extends State<NutritionScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     var nameController = TextEditingController();
     var descController = TextEditingController();
-    var caloriesController = TextEditingController();
-    var proteinController = TextEditingController();
-    var carbController = TextEditingController();
-    var fiberController = TextEditingController();
-    var fatController = TextEditingController();
-    var ironController = TextEditingController();
+    int iron=0;
+    int fiber=0;
+    int protein=0;
+    int carbs=0;
+    int fat=0;
+    int calories=0;
     String pIcon =
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fafafa" d="M9 7v10h2v-4h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm2 2h2v2h-2zm1-7a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2"/></svg>';
     String cIcon =
@@ -49,336 +49,374 @@ class _NutritionScreenState extends State<NutritionScreen> {
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fafafa" d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22l1.43-1.43L16.29 22l2.14-2.14l1.43 1.43l1.43-1.43l-1.43-1.43L22 16.29z"/></svg>';
     return BlocConsumer<NutritionCubit, NutritionState>(
       listener: (context, state) {
-        // TODO: implement listener
+
+        if(state is UpdateNutritionSuccess){
+          cubit.receiveNutrition();
+        }
       },
       builder: (context, state) {
-        return Scaffold(
-            floatingActionButton: FloatingActionButton(
-              shape: CircleBorder(),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text("Add Food"),
-                        content: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            // Align content to the left
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Name: "),
-                                        TextField(
-                                          controller: nameController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Description: "),
-                                        TextField(
-                                          controller: descController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Calories: "),
-                                        TextField(
-                                          controller: caloriesController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Protein: "),
-                                        TextField(
-                                          controller: proteinController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Carbs: "),
-                                        TextField(
-                                          controller: carbController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Fiber: "),
-                                        TextField(
-                                          controller: fiberController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Fat: "),
-                                        TextField(
-                                          controller: fatController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Iron: "),
-                                        TextField(
-                                          controller: ironController,
-                                          decoration: InputDecoration(
-                                              constraints: BoxConstraints(
-                                                  maxWidth: screenWidth * 0.5,
-                                                  maxHeight:
-                                                      screenHeight * 0.05)),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+        if(state is ReceiveNutritionLoading || state is SaveFoodLoading) {
+          return Scaffold(body: Center(
+            child: CircularProgressIndicator(),
+          ),);
+        }else{
+          return Scaffold(
+              floatingActionButton: FloatingActionButton(
+                shape: CircleBorder(),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Add Food"),
+                          content: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Name: "),
+                                          TextField(
+                                            controller: nameController,
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Description: "),
+                                          TextField(
+                                            controller: descController,
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Calories: "),
+                                          TextField(
+                                           onChanged: (value){
+                                             calories=int.parse(value);
+                                             print(calories);
+                                           },
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Protein: "),
+                                          TextField(
+                                              onChanged: (value){
+                                                protein=int.parse(value);
+                                                print(calories);
+                                              },
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Carbs: "),
+                                          TextField(
+                                            onChanged: (value){
+                                              carbs=int.parse(value);
+                                              print(carbs);
+                                            },
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Fiber: "),
+                                          TextField(
+                                            onChanged: (value){
+                                              fiber=int.parse(value);
+                                              print(fiber);
+                                            },
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Fat: "),
+                                          TextField(
+                                            onChanged: (value){
+                                              fat=int.parse(value);
+                                              print(fat);
+                                            },
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Iron: "),
+                                          TextField(
+                                            onChanged: (value){
+                                              iron=int.parse(value);
+                                              print(iron);
+                                            },
+                                            decoration: InputDecoration(
+                                                constraints: BoxConstraints(
+                                                    maxWidth: screenWidth * 0.5,
+                                                    maxHeight:
+                                                    screenHeight * 0.05)),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        contentPadding: EdgeInsets.zero,
-                        actionsAlignment: MainAxisAlignment.spaceBetween,
-                        actions: [
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text("Close",
-                                  style: GoogleFonts.itim(color: Colors.red)),
-                              style: ButtonStyle(
-                                  shape: MaterialStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          side: BorderSide(color: Colors.red))),
-                                  backgroundColor:
-                                      MaterialStatePropertyAll(Colors.white))),
-                          ElevatedButton(
-                              onPressed: () {
-                                cubit.saveFood(
-                                    nameController.text,
-                                    caloriesController.text,
-                                    descController.text,
-                                    proteinController.text,
-                                    fiberController.text,
-                                    fatController.text,
-                                    carbController.text,
-                                    ironController.text,
-                                    FieldValue.serverTimestamp());
-                              },
-                              child: Text(
-                                "Add",
-                                style: GoogleFonts.itim(color: Colors.white),
-                              ),
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStatePropertyAll(Colors.red)))
-                        ],
-                      );
-                    });
-              },
-              mini: true,
-              child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(999),
-                    gradient: LinearGradient(
-                      colors: [Color(0xffCDBF4C), Color(0xff535707)],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                  ),
-                  width: 200,
-                  height: 200,
-                  child: Icon(
-                    Icons.add,
-                    size: 32,
-                    color: Colors.white,
-                  )),
-            ),
-            backgroundColor: Color(0xfffafafa),
-            appBar: AppBar(
-              backgroundColor: Color(0xfffafafa),
-              centerTitle: true,
-              leading: IconButton(
-                  color: Color(0xff535707),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_outlined)),
-              title: GradientText(
-                "Nutrition",
-                gradient: LinearGradient(
-                  colors: [Color(0xffCDBF4C), Color(0xff535707)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-                style: GoogleFonts.itim(color: Color(0xffFF8000), fontSize: 32),
-              ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    NutritionContainer(
-                      screenHeight: screenHeight * 0.1,
-                      screenWidth: screenWidth * 0.45,
-                      widget: Icon(
-                        CupertinoIcons.flame_fill,
-                        size: 14,
-                        color: Colors.white,
+                          contentPadding: EdgeInsets.zero,
+                          actionsAlignment: MainAxisAlignment.spaceBetween,
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Close",
+                                    style: GoogleFonts.itim(color: Colors.red)),
+                                style: ButtonStyle(
+                                    shape: MaterialStatePropertyAll(
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(20),
+                                            side: BorderSide(
+                                                color: Colors.red))),
+                                    backgroundColor:
+                                    MaterialStatePropertyAll(Colors.white))),
+                            ElevatedButton(
+                                onPressed: () {
+                                  cubit.saveFood(
+                                      nameController.text,
+                                      calories,
+                                      descController.text,
+                                      protein,fiber,fat,carbs,iron,
+                                      FieldValue.serverTimestamp());
+                                  cubit.currentProtein = cubit.currentProtein + protein;
+                                  cubit.currentCarbs = cubit.currentCarbs + carbs;
+                                  cubit.currentCalories = cubit.currentCalories + calories;
+                                  cubit.currentIron = cubit.currentIron + iron;
+                                  cubit.currentFiber = cubit.currentFiber + fiber;
+                                  cubit.currentFat = cubit.currentFat + fat;
+                                  print("current Calories = ${cubit.currentCalories}");
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                  "Add",
+                                  style: GoogleFonts.itim(color: Colors.white),
+                                ),
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                    MaterialStatePropertyAll(Colors.red)))
+                          ],
+                        );
+                      });
+                },
+                mini: true,
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(999),
+                      gradient: LinearGradient(
+                        colors: [Color(0xffCDBF4C), Color(0xff535707)],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
                       ),
-                      text: 'calories',
-                      remaining: '0 Remaining',
-                      color: Colors.red,
                     ),
-                    NutritionContainer(
-                        screenHeight: screenHeight * 0.1,
-                        screenWidth: screenWidth * 0.45,
-                        widget: Iconify(
-                          pIcon,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        text: " Protein",
-                        remaining: "0 Remaining",
-                        color: Colors.orange),
-                  ],
+                    width: 200,
+                    height: 200,
+                    child: Icon(
+                      Icons.add,
+                      size: 32,
+                      color: Colors.white,
+                    )),
+              ),
+              backgroundColor: Color(0xfffafafa),
+              appBar: AppBar(
+                backgroundColor: Color(0xfffafafa),
+                centerTitle: true,
+                leading: IconButton(
+                    color: Color(0xff535707),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+                title: GradientText(
+                  "Nutrition",
+                  gradient: LinearGradient(
+                    colors: [Color(0xffCDBF4C), Color(0xff535707)],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  style: GoogleFonts.itim(
+                      color: Color(0xffFF8000), fontSize: 32),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0),
-                  child: Row(
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(children: [
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       NutritionContainer(
-                          screenHeight: screenHeight * 0.1,
-                          screenWidth: screenWidth * 0.45,
-                          widget: Iconify(
-                            cIcon,
-                            color: Colors.white,
-                            size: 16,
-                          ),
-                          text: " Carbohydrates",
-                          remaining: "0 Remaining",
-                          color: Colors.blueAccent),
+
+                        widget: Icon(
+                          CupertinoIcons.flame_fill,
+                          size: 14,
+                          color: Colors.white,
+                        ),
+                        text: 'calories',
+                        remaining: cubit.calories! - cubit.currentCalories == 0
+                            ? "Add your Target Now !"
+                            : '${cubit.calories! - cubit.currentCalories
+                            .toInt()} Remaining',
+                        color: Colors.red,
+                      ),
                       NutritionContainer(
-                          screenHeight: screenHeight * 0.1,
-                          screenWidth: screenWidth * 0.45,
                           widget: Iconify(
-                            leafIcon,
+                            pIcon,
                             color: Colors.white,
                             size: 16,
                           ),
-                          text: " Fiber",
-                          remaining: "0 Remaining",
-                          color: Colors.green),
+                          text: "protein",
+                          remaining: cubit.protein! - cubit.currentProtein != 0
+                              ? "${cubit.protein! -
+                              cubit.currentProtein} Remaining"
+                              : "Add your Target Now !",
+                          color: Colors.orange),
                     ],
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    NutritionContainer(
-                        screenHeight: screenHeight * 0.1,
-                        screenWidth: screenWidth * 0.45,
-                        widget: Iconify(
-                          fIcon,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        text: " Fat",
-                        remaining: "0 Remaining",
-                        color: Color(0xff33a3b2)),
-                    NutritionContainer(
-                        screenHeight: screenHeight * 0.1,
-                        screenWidth: screenWidth * 0.45,
-                        widget: Iconify(
-                          ironIcon,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        text: " Iron",
-                        remaining: "0 Remaining",
-                        color: Color(0xff7da1c3)),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "  Food",
-                      style: GoogleFonts.itim(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                          color: Color(0xff535707)),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NutritionContainer(
+                            widget: Iconify(
+                              cIcon,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                            text: "carbohydrates",
+                            remaining: cubit.carbs! - cubit.currentCarbs != 0
+                                ? "${cubit.carbs! -
+                                cubit.currentCarbs} Remaining"
+                                : "Add your Target Now !",
+                            color: Colors.blueAccent),
+                        NutritionContainer(
+                            widget: Iconify(
+                              leafIcon,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                            text: "fiber",
+                            remaining: cubit.fiber! - cubit.currentFiber != 0
+                                ? "${cubit.fiber! -
+                                cubit.currentFiber} Remaining"
+                                : "Add your Target Now !",
+                            color: Colors.green),
+                      ],
                     ),
-                  ],
-                ),
-                NutritionFoodList(foodStream: cubit.foodStream!)
-              ]),
-            ));
-      },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      NutritionContainer(
+                          widget: Iconify(
+                            fIcon,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                          text: "fat",
+                          remaining: cubit.fat! - cubit.currentFat != 0
+                              ? "${cubit.fat! - cubit.currentFat} Remaining"
+                              : "Add your Target Now !",
+                          color: Color(0xff33a3b2)),
+                      NutritionContainer(
+                          widget: Iconify(
+                            ironIcon,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                          text: "iron",
+                          remaining: cubit.iron! - cubit.currentIron != 0
+                              ? "${cubit.iron! - cubit.currentIron} Remaining"
+                              : "Add your Target Now !",
+                          color: Color(0xff7da1c3)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "  Food",
+                        style: GoogleFonts.itim(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            color: Color(0xff535707)),
+                      ),
+                    ],
+                  ),
+                  NutritionFoodList(foodStream: cubit.foodStream!)
+                ]),
+              ));
+        }
+        },
     );
   }
 }
