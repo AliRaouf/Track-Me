@@ -18,14 +18,28 @@ class ExerciseModel {
         this.secondaryMuscles,
         this.instructions});
 
-  ExerciseModel.fromJson(Map<String, dynamic> json) {
-    bodyPart = json['bodyPart'];
-    equipment = json['equipment'];
-    gifUrl = json['gifUrl'];
-    id = json['id'];
-    name = json['name'];
-    target = json['target'];
-    secondaryMuscles = json['secondaryMuscles'].cast<String>();
-    instructions = json['instructions'].cast<String>();
+  factory ExerciseModel.fromJson(Map<String, dynamic> json) {
+    return ExerciseModel(
+    bodyPart : json['bodyPart'],
+    equipment : json['equipment'],
+    gifUrl : json['gifUrl'],
+    id : json['id'],
+    name : json['name'],
+    target : json['target'],
+    secondaryMuscles : json['secondaryMuscles'].cast<String>(),
+    instructions : json['instructions'].cast<String>(),
+    );
+  }
+  factory ExerciseModel.fromList(List<dynamic> jsonList) {
+    if (jsonList.isNotEmpty) {
+      return ExerciseModel.fromJson(jsonList.first);
+    } else {
+      // Return a default instance or handle it according to your needs
+      return ExerciseModel();
+    }
+  }
+
+  static List<ExerciseModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((item) => ExerciseModel.fromJson(item)).toList();
   }
 }

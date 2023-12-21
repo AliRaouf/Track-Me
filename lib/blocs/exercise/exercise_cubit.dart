@@ -11,13 +11,14 @@ class ExerciseCubit extends Cubit<ExerciseState> {
   ExerciseCubit() : super(ExerciseInitial());
   static ExerciseCubit get(context) => BlocProvider.of(context);
   ExerciseModel? exerciseModel;
+  List<ExerciseModel>? exerciseList;
   getExercise(type,search) {
     emit(GetExerciseLoading());
     ExerciseDio.getData(type,search).then((value) {
-      emit(GetExerciseSuccess());
-      exerciseModel = ExerciseModel.fromJson(value.data);
-      print(exerciseModel!.name);
+      List<ExerciseModel> exercises = ExerciseModel.fromJsonList(value.data);
+      exerciseList=exercises;
       print(value.statusCode);
+      emit(GetExerciseSuccess());
     });
   }
 }

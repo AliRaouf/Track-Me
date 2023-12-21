@@ -21,7 +21,7 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context)=>LoginCubit()),
         BlocProvider(create: (context)=>UserCubit()),
         BlocProvider(create: (context)=>FoodCubit()..initApi()),
-        BlocProvider(create: (context)=>NutritionCubit()..getUserData()..receiveFoodList()),
+        BlocProvider(create: (context)=>NutritionCubit()..getUserData()),
         BlocProvider(create: (context)=>ExerciseCubit()),
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false,

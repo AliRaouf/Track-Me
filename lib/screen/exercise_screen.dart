@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/components/exercise_dropdown.dart';
 import 'package:track_me/components/target_dropdown.dart';
+import 'package:track_me/screen/exercise_search_screen.dart';
 
 import '../blocs/exercise/exercise_cubit.dart';
 import '../components/custom_button.dart';
@@ -24,7 +25,10 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<ExerciseCubit, ExerciseState>(
   listener: (context, state) {
-    // TODO: implement listener
+    if(state is GetExerciseSuccess){
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => ExerciseSearchScreen()));
+    }
   },
   builder: (context, state) {
     return Scaffold(
@@ -65,15 +69,19 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                     screenWidth: screenWidth * 0.25,
                     screenHeight: screenHeight * 0.05,
                     text: 'Close',
-                    onpressed: () {}, bColor: Colors.white,sColor: Color(0xff9932CC), tColor: Color(0xff9932CC),
+                    onpressed: () {
+                      Navigator.pop(context);
+                    }, bColor: Colors.white,sColor: Color(0xff9932CC), tColor: Color(0xff9932CC),
                   ),
                   CustomButton(
                     screenWidth: screenWidth * 0.25,
                     screenHeight: screenHeight * 0.05,
                     text: 'Search',
                     onpressed: () {
-                      print("${exerciseController.text} ${targetController.text}");
-                      cubit.getExercise(exerciseController.text,"bodyPart");
+                      print("${targetController.text}");
+                      targetController.text==""?
+                      cubit.getExercise("bodyPart",exerciseController.text.toLowerCase()):
+                      cubit.getExercise("target",targetController.text.toLowerCase());
                     }, bColor:Color(0xff9932CC), tColor: Color(0xfffafafa),
                   )
                 ],

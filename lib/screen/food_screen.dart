@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/food/food_cubit.dart';
 import 'package:track_me/screen/single_food_screen.dart';
 
+import '../components/custom_text_field.dart';
 import '../components/food_container.dart';
 
 class FoodScreen extends StatefulWidget {
@@ -89,36 +90,23 @@ class _FoodScreenState extends State<FoodScreen> {
                       ),
                     ],
                   ),
-                  child: TextField(
+                  child: CustomTextField(
                       controller: searchController,
-                      decoration: InputDecoration(
-                        hintText: "Search Here!",
-                        hintStyle: GoogleFonts.itim(fontSize: 18),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              if (cubit.recipeModel == null &&
-                                  cubit.ingredientModel == null)
-                                CircularProgressIndicator();
-                              {
-                                if (FoodView == Food.Recipe) {
-                                  cubit.getRecipe(searchController.text);
-                                  print(searchController.text);
-                                } else if (FoodView == Food.Ingredient) {
-                                  cubit.getIngredient(searchController.text);
-                                  print(searchController.text);
-                                }
-                              }
-                            },
-                            icon: Icon(Icons.search),
-                            color: Color(0xffF49E47)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.grey)),
-                      )),
+                  onPressed: () {
+                    if (cubit.recipeModel == null &&
+                        cubit.ingredientModel == null)
+                      CircularProgressIndicator();
+                    {
+                      if (FoodView == Food.Recipe) {
+                        cubit.getRecipe(searchController.text);
+                        print(searchController.text);
+                      } else if (FoodView == Food.Ingredient) {
+                        cubit.getIngredient(searchController.text);
+                        print(searchController.text);
+                      }
+                    }
+                  },color: Color(0xffF49E47),
+                  ),
                 ),
                 cubit.recipeModel == null && cubit.ingredientModel == null
                     ? SizedBox.shrink()
@@ -131,27 +119,33 @@ class _FoodScreenState extends State<FoodScreen> {
                                 physics: BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return FoodContainer(
-                                    ontap: (){
+                                    ontap: () {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => SingleFoodScreen(
+                                          builder: (context) =>
+                                              SingleFoodScreen(
                                             recipe: cubit.recipeModel,
                                             index: index,
                                           ),
                                         ),
                                       );
                                     },
-                                      Height: screenHeight * 0.144,
-                                    title: cubit.recipeModel?.results?[index].title
-                                  ,carbs: cubit.recipeModel?.results?[index].nutrition?.nutrients?[0].amount,
-                                  protein: cubit.recipeModel?.results?[index].nutrition?.nutrients?[8].amount,
-                                  calories: cubit.recipeModel?.results?[index].nutrition?.nutrients?[3].amount,);
+                                    Height: screenHeight * 0.144,
+                                    title: cubit
+                                        .recipeModel?.results?[index].title,
+                                    carbs: cubit.recipeModel?.results?[index]
+                                        .nutrition?.nutrients?[0].amount,
+                                    protein: cubit.recipeModel?.results?[index]
+                                        .nutrition?.nutrients?[8].amount,
+                                    calories: cubit.recipeModel?.results?[index]
+                                        .nutrition?.nutrients?[3].amount,
+                                  );
                                 }),
                           )
                         : cubit.ingredientModel == null
                             ? SizedBox.shrink()
                             : FoodContainer(
-                                ontap: (){
+                                ontap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                       builder: (context) => SingleFoodScreen(

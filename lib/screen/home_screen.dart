@@ -129,7 +129,7 @@ NutritionCubit.get(context).createNutritionDataSet();
                   screenHeight: screenHeight * 0.17,
                   text: "Track Your Nutritions !",
                   gradient: LinearGradient(
-                    colors: [Color(0xffCDBF4C), Color(0xff535707)],
+                    colors:  [Color(0xff535707),Color(0xffCDBF4C),],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),

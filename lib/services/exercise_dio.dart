@@ -7,7 +7,7 @@ class ExerciseDio {
   static init() {
     dio = Dio(
         BaseOptions(
-          baseUrl: "https://exercisedb.p.rapidapi.com/exercises", headers:
+          baseUrl: "https://exercisedb.p.rapidapi.com", headers:
         {'X-RapidAPI-Key': 'edc2d9fb17mshbe7407180f404edp1cc63djsnb4123597d3c4',
           'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'},
           receiveDataWhenStatusError: true,
@@ -20,7 +20,7 @@ class ExerciseDio {
       if (dio == null) {
         init();
       }
-      return await dio!.get("/$type/$search?limit=10");
+      return await dio!.get("https://exercisedb.p.rapidapi.com/exercises/$type/$search");
     }
   }
 }

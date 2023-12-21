@@ -96,7 +96,7 @@ class NutritionCubit extends Cubit<NutritionState> {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       DocumentReference userDocRef = firestore.collection("nutrition").doc(user!.email);
 
-      if ((await userDocRef.collection("Nutrition").get()).docs.isEmpty) {
+      if ((await userDocRef.collection("Nutrition").get()).docs.isEmpty && user!.email != null) {
         await userDocRef.collection("Nutrition").add({
           "calories": 0,
           "protein": 0,
@@ -104,12 +104,6 @@ class NutritionCubit extends Cubit<NutritionState> {
           "iron": 0,
           "carbohydrates": 0,
           "fat": 0,
-          "currentCalories": 0,
-          "currentProtein": 0,
-          "currentFiber": 0,
-          "currentIron": 0,
-          "currentCarbohydrates": 0,
-          "currentFat": 0,
         });
         print('Nutrition entry added for ${user!.email}');
 

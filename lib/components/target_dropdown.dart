@@ -37,7 +37,6 @@ class _TargetDropDownState extends State<TargetDropDown> {
       const DropdownMenuEntry(value: "hamstrings", label: "Hamstrings"),
 
     ];
-    var TargetController = TextEditingController();
     return DropdownMenu<String>(
       menuStyle: MenuStyle(
           shape: MaterialStatePropertyAll(
@@ -57,7 +56,7 @@ class _TargetDropDownState extends State<TargetDropDown> {
         style: GoogleFonts.itim(fontSize: 16),
       ),trailingIcon:Icon(Icons.arrow_drop_down_sharp,color: Colors.purple,),
       selectedTrailingIcon:Icon(Icons.arrow_drop_up,color: Colors.purple,),
-      controller: TargetController,
+      controller: widget.controller,
       textStyle: GoogleFonts.itim(color: Color(0xff9932CC)),
       dropdownMenuEntries: targets,
     );
