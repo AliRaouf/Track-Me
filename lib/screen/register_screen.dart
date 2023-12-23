@@ -73,7 +73,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Container(
                     width: screenWidth * 0.8,
-                    margin: EdgeInsets.only(bottom: screenHeight * 0.04),
+                    margin: EdgeInsets.only(bottom: screenHeight * 0.05),
                     child: CustomTextFormField(
                       hint: "UserName",
                       controller: usernameController,
@@ -83,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   Container(
                     width: screenWidth * 0.8,
-                    margin: EdgeInsets.only(bottom: screenHeight * 0.04),
+                    margin: EdgeInsets.only(bottom: screenHeight * 0.05),
                     child: CustomTextFormField(
                       hint: "Email",
                       controller: emailController,
@@ -93,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   Container(
                     width: screenWidth * 0.8,
-                    margin: EdgeInsets.only(bottom: screenHeight * 0.04),
+                    margin: EdgeInsets.only(bottom: screenHeight * 0.05),
                     child: CustomTextFormField(
                       hint: "Password",
                       controller: passwordController,
@@ -129,7 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   const BorderSide(color: Colors.black))),
                       label: Text(
                         "Gender",
-                        style: GoogleFonts.itim(fontSize: 18),
+                        style: GoogleFonts.itim(fontSize: 18,color: Color(0xff00a5fa)),
                       ),
                       controller: genderController,
                       dropdownMenuEntries: genders,
@@ -138,7 +138,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         print(genderController.text);
                       }),
                   Container(
-                    margin: EdgeInsets.only(top: screenHeight * 0.05),
+                    margin: EdgeInsets.only(top: screenHeight * 0.1),
                     child: GradientButton(
                       screenWidth: screenWidth * 0.38,
                       screenHeight: screenHeight * 0.075,

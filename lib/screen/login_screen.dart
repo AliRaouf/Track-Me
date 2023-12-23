@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Color(0xfffafafa),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ListView(children: [Stack(
           children: [
               Center(
@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 width: screenWidth * 0.8,
                 margin: EdgeInsets.only(
-                    bottom: screenHeight * 0.04),
+                    bottom: screenHeight * 0.05),
                 child: CustomTextFormField(
                   hint: "Email",
                   controller: emailController,
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 width: screenWidth * 0.8,
                 margin: EdgeInsets.only(
-                    bottom: screenHeight * 0.06),
+                    bottom: screenHeight * 0.1),
                 child: CustomTextFormField(
                   hint: "Password",
                   controller: passwordController,

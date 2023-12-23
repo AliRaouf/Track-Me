@@ -74,15 +74,17 @@ class SingleExerciseScreen extends StatelessWidget {
                   Text("Instructions",style: GoogleFonts.itim(color: Color(0xff9932CC),fontSize: 16),),
                 ],
               ),
-              Container(height: screenHeight*0.18,width: screenWidth,color: Colors.white,
-                child: ListView(
-                  children: [
-                    for(int i=0; i < exerciseList![index].instructions!.length;i++)
-                      Text("${i+1}) ${exerciseList![index].instructions![i]}",style: GoogleFonts.itim(fontSize: 15))
-                  ],
-                )
-
-                ),
+              Flexible(
+                child: Container(width: screenWidth,color: Colors.transparent,
+                  child: ListView(
+                    children: [
+                      for(int i=0; i < exerciseList![index].instructions!.length;i++)
+                        Text("${i+1}) ${exerciseList![index].instructions![i]}",style: GoogleFonts.itim(fontSize: 15))
+                    ],
+                  )
+                
+                  ),
+              ),
             ],
           ),
         ),

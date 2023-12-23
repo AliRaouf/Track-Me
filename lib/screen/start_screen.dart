@@ -31,7 +31,7 @@ class StartScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          Container(child: Image.asset("assets/images/logo.png")),
+          Container(child: Image.asset("assets/images/logo.png"),margin: EdgeInsets.symmetric(vertical: screenHeight*0.05),),
           GradientButton(
             screenWidth: screenWidth * 0.74,
             screenHeight: screenHeight * 0.075,

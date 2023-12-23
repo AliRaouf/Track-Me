@@ -75,7 +75,7 @@ class SingleFoodScreen extends StatelessWidget {
                   ],
                 ),
                 width: screenWidth,
-                height: screenHeight * 0.2,
+                height: screenHeight * 0.24,
                 margin: EdgeInsets.only(bottom: screenHeight * 0.02),
                 child: ListView.builder(
                     padding: EdgeInsets.all(8),
@@ -113,7 +113,7 @@ class SingleFoodScreen extends StatelessWidget {
                     ],
                   ),
                   width: screenWidth,
-                  height: screenHeight * 0.2,
+                  height: screenHeight * 0.24,
                   margin: EdgeInsets.only(bottom: screenHeight * 0.01),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(

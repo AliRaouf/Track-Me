@@ -29,10 +29,10 @@ class CustomTextFormField extends StatelessWidget {
           return "field is required";
         }
       },
-      decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(vertical:10,horizontal: 10),
+      decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(vertical:15,horizontal: 15),
           hintText: hint,
           labelText: label,
-          labelStyle: GoogleFonts.itim(fontSize: 18),
+          labelStyle: GoogleFonts.itim(fontSize: 18,color: Color(0xff00a5fa)),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),

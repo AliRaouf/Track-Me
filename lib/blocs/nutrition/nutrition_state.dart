@@ -16,6 +16,9 @@ class ReceiveFoodError extends NutritionState {}
 class UpdateNutritionLoading extends NutritionState {}
 class UpdateNutritionSuccess extends NutritionState {}
 class UpdateNutritionError extends NutritionState {}
+class addToCurrentNutritionLoading extends NutritionState {}
+class addToCurrentNutritionSuccess extends NutritionState {}
+class addToCurrentNutritionError extends NutritionState {}
 
 
 

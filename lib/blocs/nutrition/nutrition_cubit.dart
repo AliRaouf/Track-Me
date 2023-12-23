@@ -18,12 +18,12 @@ class NutritionCubit extends Cubit<NutritionState> {
   int? iron;
   int? protein;
   int? fat;
-  int currentCalories=0;
-  int currentCarbs=0;
-  int currentFiber=0;
-  int currentIron=0;
-  int currentProtein=0;
-  int currentFat=0;
+  int? currentCalories;
+  int? currentCarbs;
+  int? currentFiber;
+  int? currentIron;
+  int? currentProtein;
+  int? currentFat;
 
   static NutritionCubit get(context) => BlocProvider.of(context);
 
@@ -65,8 +65,10 @@ class NutritionCubit extends Cubit<NutritionState> {
               .collection('foodLog')
               .snapshots();
       emit(ReceiveFoodSuccess());
+      print("Food Received Successfully");
+      print(foodStream!.length);
     } on Exception catch (e) {
-      print('Error adding food entry: $e');
+      print('Error receiving food entry: $e');
       emit(ReceiveFoodError());
     }
   }
@@ -83,6 +85,12 @@ class NutritionCubit extends Cubit<NutritionState> {
       fat=querySnapshot.docs.first.get("fat");
       fiber=querySnapshot.docs.first.get("fiber");
       protein=querySnapshot.docs.first.get("protein");
+      currentCalories=querySnapshot.docs.first.get("currentCalories");
+      currentCarbs=querySnapshot.docs.first.get("currentCarbohydrates");
+      currentIron=querySnapshot.docs.first.get("currentIron");
+      currentFat=querySnapshot.docs.first.get("currentFat");
+      currentFiber=querySnapshot.docs.first.get("currentFiber");
+      currentProtein=querySnapshot.docs.first.get("currentProtein");
       emit(ReceiveNutritionSuccess());
       print("carbs = $carbs , Calories=$calories ,remaining calories= $currentCalories");
     } on Exception catch (e) {
@@ -104,6 +112,12 @@ class NutritionCubit extends Cubit<NutritionState> {
           "iron": 0,
           "carbohydrates": 0,
           "fat": 0,
+          "currentCalories": 0,
+          "currentProtein": 0,
+          "currentFiber": 0,
+          "currentIron": 0,
+          "currentCarbohydrates": 0,
+          "currentFat": 0,
         });
         print('Nutrition entry added for ${user!.email}');
 
@@ -135,6 +149,25 @@ class NutritionCubit extends Cubit<NutritionState> {
       emit(UpdateNutritionError());
     }
 
+  }
+  addToCurrentNutrition(calorie,protein,carb,fiber,fat,iron) async {
+    emit(addToCurrentNutritionLoading());
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    QuerySnapshot nutritionSnapshot = await firestore
+        .collection("nutrition")
+        .doc(user!.email)
+        .collection("Nutrition")
+        .limit(1).get();
+    DocumentSnapshot doc=nutritionSnapshot.docs.first;
+    await doc.reference.update({
+      "currentCalories": FieldValue.increment(calorie),
+      "currentCarbohydrates":FieldValue.increment(carb),
+      "currentProtein":FieldValue.increment(protein),
+      "currentFat":FieldValue.increment(fat),
+      "currentFiber":FieldValue.increment(fiber),
+      "currentIron":FieldValue.increment(iron),
+    });
+    emit(addToCurrentNutritionSuccess());
   }
   String formatTime(Timestamp timestamp) {
     DateTime dateTime = timestamp.toDate();

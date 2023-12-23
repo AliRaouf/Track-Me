@@ -7,13 +7,14 @@ import '../blocs/nutrition/nutrition_cubit.dart';
 class NutritionContainer extends StatelessWidget {
   NutritionContainer({
     super.key,
-    required this.widget, required this.text, required this.remaining, required this.color,
+    required this.widget, required this.text, required this.remaining, required this.color, required this.percent,
   });
   final Widget widget;
   final String text;
   final String remaining;
   final Color color;
   var nutritionController = TextEditingController();
+  final double percent;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class NutritionContainer extends StatelessWidget {
                           Row(mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text("Amount: "),
-                              TextField(
+                              TextField(keyboardType: TextInputType.numberWithOptions(decimal: false),
                                 controller: nutritionController,
                                 decoration: InputDecoration(
                                     constraints: BoxConstraints(
@@ -107,7 +108,7 @@ class NutritionContainer extends StatelessWidget {
                 LinearPercentIndicator(barRadius: Radius.circular(8),
                   width: MediaQuery.of(context).size.width*0.38333,
                   lineHeight: 8.0,
-                  percent: 0.2,
+                  percent: percent,
                   progressColor: Colors.white,
                 ),
               ],
