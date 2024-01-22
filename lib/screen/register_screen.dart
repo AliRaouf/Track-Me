@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,9 +9,11 @@ import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
+
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
+
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _isPasswordObscured = true;
   var emailController = TextEditingController();
@@ -22,11 +25,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     const DropdownMenuEntry(value: "Male", label: "Male"),
     const DropdownMenuEntry(value: "Female", label: "Female"),
   ];
+  late MemoryImage? _selectedImage;
   void _togglePasswordVisibility() {
     setState(() {
       _isPasswordObscured = !_isPasswordObscured;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -51,12 +56,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Stack(
                 children: [
                   Center(
-                    child: SizedBox(
-                        height: screenHeight * 0.3,
-                        child: Image.asset(
-                          "assets/images/logo.png",
-                        )),
-                  ),
+                      child: Container(
+                    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.05),
+                    child: cubit.image != null
+                        ? CircleAvatar(
+                            radius: 64,
+                            backgroundImage: MemoryImage(cubit.image!),
+                          )
+                        : CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 64,
+                            backgroundImage: NetworkImage(
+                                "https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg"),
+                          ),
+                  )),
+                  Positioned(
+                      child: IconButton(
+                          onPressed: () {
+                            cubit.selectImage().then((image) {
+                              setState(() {
+                                _selectedImage = image;
+                              });
+                            });
+                          },
+                          icon: Icon(Icons.add_a_photo_outlined)),
+                      bottom: screenHeight * 0.03,
+                      left: screenWidth * 0.55),
                   Row(
                     children: [
                       IconButton(
@@ -78,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hint: "UserName",
                       controller: usernameController,
                       label: "UserName",
-                      obscureText: false,
+                      obscureText: false, readOnly: false,
                     ),
                   ),
                   Container(
@@ -88,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hint: "Email",
                       controller: emailController,
                       label: "Email",
-                      obscureText: false,
+                      obscureText: false, readOnly: false,
                     ),
                   ),
                   Container(
@@ -109,7 +134,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ? Icons.visibility
                               : Icons.visibility_off)),
                       iconColor:
-                          _isPasswordObscured ? Colors.blue : Colors.grey,
+                          _isPasswordObscured ? Colors.blue : Colors.grey, readOnly: false,
                     ),
                   ),
                   DropdownMenu<String>(
@@ -129,7 +154,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   const BorderSide(color: Colors.black))),
                       label: Text(
                         "Gender",
-                        style: GoogleFonts.itim(fontSize: 18,color: Color(0xff00a5fa)),
+                        style: GoogleFonts.itim(
+                            fontSize: 18, color: Color(0xff00a5fa)),
                       ),
                       controller: genderController,
                       dropdownMenuEntries: genders,
@@ -150,7 +176,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             emailController.text,
                             passwordController.text,
                             usernameController.text,
-                            genderController.text);
+                            genderController.text,
+                            cubit.image
+                        );
                       },
                     ),
                   ),

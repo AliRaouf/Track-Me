@@ -8,27 +8,29 @@ class CustomTextFormField extends StatelessWidget {
   bool? obscureText;
   IconButton? icon;
   Color? iconColor;
+  String? Function(String?)? validate;
+  bool readOnly;
+  void Function(String)? onchange;
 
   CustomTextFormField(
-      {super.key,
-      required this.hint,
-      required this.controller,
+      {super.key,required this.readOnly,
+      required this.hint, this.controller,
       required this.label,
       required this.obscureText,
       this.icon,
-      this.iconColor});
+      this.iconColor,
+      this.validate,
+      this.onchange});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:onchange ,
+      readOnly: readOnly,
       autovalidateMode:AutovalidateMode.onUserInteraction,
       controller: controller,
       obscureText: obscureText!,
-      validator: (data) {
-        if (data!.isEmpty) {
-          return "field is required";
-        }
-      },
+      validator:validate ,
       decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(vertical:15,horizontal: 15),
           hintText: hint,
           labelText: label,

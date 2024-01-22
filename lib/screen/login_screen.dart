@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   listener: (context, state) {
     if(state is LoginSuccessState){
       userCubit.getUserData();
-      userCubit.receiverUserName();
+      userCubit.receiverUserData();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Welcome To Track Me")));
       Navigator.push(
           context,
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hint: "Email",
                   controller: emailController,
                   label: "Email",
-                  obscureText: false,
+                  obscureText: false, readOnly: false,
                 ),
               ),
               Container(
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: Icon(_isPasswordObscured
                           ? Icons.visibility
                           : Icons.visibility_off)),
-                  iconColor: _isPasswordObscured ? Colors.blue : Colors.grey,
+                  iconColor: _isPasswordObscured ? Colors.blue : Colors.grey, readOnly: false,
                 ),
               ),
               GradientButton(

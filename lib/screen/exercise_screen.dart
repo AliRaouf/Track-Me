@@ -55,7 +55,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 child: Text(
                   "Select only one of them",
                   style:
-                      GoogleFonts.itim(color: Color(0xff9932CC), fontSize: 20),
+                      GoogleFonts.itim(color: Colors.black87, fontSize: 20),
                 ),
               ),
               Container(

@@ -1,6 +1,10 @@
+import 'dart:typed_data';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,25 +14,61 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
   static RegisterCubit get(context) => BlocProvider.of(context);
-
-  registerUser(String email, String password,String userName, String gender ) {
+  Uint8List? image;
+  Future<String>uploadImage(Uint8List file)async{
+    String imgName=FirebaseAuth.instance.currentUser!.email!;
+    Reference ref = FirebaseStorage.instance.ref('profile_image').child(imgName);
+    UploadTask uploadTask = ref.putData(file);
+    TaskSnapshot snapshot = await uploadTask;
+    String downloadUrl = await snapshot.ref.getDownloadURL();
+    return downloadUrl;
+  }
+  registerUser(String email, String password,String userName, String gender,Uint8List? file) {
     emit(RegisterLoadingState());
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      saveUser(email,password,userName,gender);
+      if (file != null) {
+        saveUser(email, password, userName, gender, file);
+      } else {
+        saveUser(email, password, userName, gender,Uint8List.fromList([]));  // Pass null for the image parameter
+      }
       emit(RegisterSuccessState());
+      print("register success");
     }).catchError((error) {
       emit(RegisterErrorState(error));
+      print("couldnt register user $error");
     });
   }
 
-  saveUser(email, password, username, gender) {
-    FirebaseFirestore.instance
-        .collection("users")
-        .add({"username": username, "email": email, "password": password,"gender":gender});
+  saveUser(email, password, username, gender,file)async{
+    emit(SaveUserLoadingState());
+    String imageUrl= await uploadImage(file);
+    try {
+      FirebaseFirestore.instance
+          .collection("users")
+          .add({"username": username, "email": email, "password": password,"gender":gender,"image":imageUrl});
+      print("user saved success");
+      emit(SaveUserSuccessState());
+    } on Exception catch (e) {
+      emit(SaveUserErrorState(e));
+      print("couldnt save user $e");
+    }
   }
   showSnackBar(BuildContext context, String message){
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+  pickImage(ImageSource source)async{
+    final ImagePicker imagePicker=ImagePicker();
+    XFile? file = await imagePicker.pickImage(source: source);
+  if(file!=null){
+    return await file.readAsBytes();
+  }else{
+    print("No Image Selected");
+  }
+  }
+ selectImage()async{
+   Uint8List? img = await pickImage(ImageSource.gallery);
+   image=img;
   }
 }

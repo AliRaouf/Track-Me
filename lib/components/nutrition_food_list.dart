@@ -36,76 +36,114 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
     return StreamBuilder(
         stream: widget.foodStream,
         builder: (context, snapshot) {
-          QuerySnapshot values = snapshot.data as QuerySnapshot;
-          if(snapshot.hasData && values.docs.length != 0){
-          return Expanded(
-              child: ListView.builder(
-                  itemCount: values.docs.length,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12,vertical: 4),
-                      child: Column(
-                        children: [
-                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          if(snapshot.hasData){
+            QuerySnapshot values = snapshot.data as QuerySnapshot;
+            if(values.docs.length!=0) {
+              return Expanded(
+                  child: ListView.builder(
+                      itemCount: values.docs.length,
+                      physics: BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
+                          child: Column(
                             children: [
-                              Text(
-                                values.docs[index]["name"],
-                                style: GoogleFonts.itim(
-                                    fontWeight: FontWeight.w500, fontSize: 18),
+                              Row(mainAxisAlignment: MainAxisAlignment
+                                  .spaceBetween,
+                                children: [
+                                  Text(
+                                    values.docs[index]["name"],
+                                    style: GoogleFonts.itim(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 18),
+                                  ),
+                                  Text(
+                                    cubit.formatTime(
+                                        values.docs[index]["date"] ??
+                                            Timestamp(0, 0)),
+                                    style: GoogleFonts.itim(
+                                        fontSize: 12, color: Colors.blueGrey),
+                                  )
+                                ],
                               ),
-                              Text(
-                               cubit.formatTime(values.docs[index]["date"]??Timestamp(0,0)),
-                              style: GoogleFonts.itim(
-                                    fontSize: 12,color: Colors.blueGrey),
+                              Row(
+                                children: [
+                                  Text(
+                                    values.docs[index]["description"],
+                                    style: GoogleFonts.itim(
+                                        fontSize: 14, color: Colors.grey),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  values.docs[index]["calories"] == null ||
+                                      values.docs[index]["calories"] == 0
+                                      ? SizedBox.shrink()
+                                      : Icon(
+                                      CupertinoIcons.flame_fill, size: 16,
+                                      color: Colors.red),
+                                  values.docs[index]["calories"] == 0
+                                      ? Text("")
+                                      : Text(
+                                      "${values.docs[index]["calories"]} "),
+                                  values.docs[index]["protein"] == null ||
+                                      values.docs[index]["protein"] == 0
+                                      ? SizedBox.shrink()
+                                      : Iconify(
+                                    pIcon, color: Colors.orange, size: 18,),
+                                  values.docs[index]["protein"] == 0
+                                      ? Text("")
+                                      : Text(
+                                      "${values.docs[index]["protein"]} "),
+                                  values.docs[index]["carbohydrates"] == null ||
+                                      values.docs[index]["carbohydrates"] == 0
+                                      ? SizedBox.shrink()
+                                      : Iconify(
+                                      cIcon, color: Colors.blue, size: 18),
+                                  values.docs[index]["carbohydrates"] == 0
+                                      ? Text("")
+                                      : Text("${values
+                                      .docs[index]["carbohydrates"]} "),
+                                  values.docs[index]["fat"] == null ||
+                                      values.docs[index]["fat"] == 0
+                                      ? SizedBox.shrink()
+                                      : Iconify(fIcon, color: Color(0xff33a3b2),
+                                      size: 18),
+                                  values.docs[index]["fat"] == 0
+                                      ? Text("")
+                                      : Text("${values.docs[index]["fat"]} "),
+                                  values.docs[index]["fiber"] == null ||
+                                      values.docs[index]["fiber"] == 0
+                                      ? SizedBox.shrink()
+                                      : Iconify(
+                                      leafIcon, color: Colors.green, size: 18),
+                                  values.docs[index]["fiber"] == 0
+                                      ? Text("")
+                                      : Text("${values.docs[index]["fiber"]} "),
+                                  values.docs[index]["iron"] == null ||
+                                      values.docs[index]["iron"] == 0
+                                      ? SizedBox.shrink()
+                                      : Iconify(
+                                      ironIcon, color: Color(0xff7da1c3),
+                                      size: 18),
+                                  values.docs[index]["iron"] == 0
+                                      ? Text("")
+                                      : Text("${values.docs[index]["iron"]} "),
+                                ],
                               )
                             ],
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                values.docs[index]["description"],
-                                style: GoogleFonts.itim(fontSize: 14,color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              values.docs[index]["calories"] == null || values.docs[index]["calories"] == 0
-                                  ? SizedBox.shrink()
-                                  : Icon(CupertinoIcons.flame_fill,size: 16,
-                                      color: Colors.red),
-                              values.docs[index]["calories"] == 0?Text(""):Text("${values.docs[index]["calories"]} "),
-                              values.docs[index]["protein"] == null || values.docs[index]["protein"] == 0
-                                  ? SizedBox.shrink()
-                                  : Iconify(pIcon,color: Colors.orange,size: 18,),
-                              values.docs[index]["protein"] == 0?Text(""):Text("${values.docs[index]["protein"]} "),
-                              values.docs[index]["carbohydrates"] == null ||values.docs[index]["carbohydrates"] == 0
-                                  ? SizedBox.shrink()
-                                  : Iconify(cIcon,color: Colors.blue,size: 18),
-                              values.docs[index]["carbohydrates"] == 0?Text(""):Text("${values.docs[index]["carbohydrates"]} "),
-                              values.docs[index]["fat"] == null || values.docs[index]["fat"] == 0
-                                  ? SizedBox.shrink()
-                                  : Iconify(fIcon,color: Color(0xff33a3b2),size: 18),
-                              values.docs[index]["fat"] == 0?Text(""):Text("${values.docs[index]["fat"]} "),
-                              values.docs[index]["fiber"] == null || values.docs[index]["fiber"] == 0
-                                  ? SizedBox.shrink()
-                                  : Iconify(leafIcon,color: Colors.green,size: 18),
-                              values.docs[index]["fiber"] == 0? Text(""):Text("${values.docs[index]["fiber"]} "),
-                              values.docs[index]["iron"] == null || values.docs[index]["iron"] == 0
-                                  ? SizedBox.shrink()
-                                  : Iconify(ironIcon,color: Color(0xff7da1c3),size: 18),
-                              values.docs[index]["iron"] == 0?Text(""):Text("${values.docs[index]["iron"]} "),
-                            ],
-                          )
-                        ],
-                      ),
-                    );
-                  }
+                        );
+                      }
                   )
-          );
-        }else{
-            return Text("Add Food Now!",style: GoogleFonts.itim(fontWeight: FontWeight.bold),);
+              );
+            }else{
+              return Text("Add Food Now!",style: GoogleFonts.itim(fontWeight: FontWeight.bold),);
+            }
+          }else{
+             return SizedBox.shrink();
           }
         }
     );

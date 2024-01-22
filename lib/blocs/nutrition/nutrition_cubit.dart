@@ -12,18 +12,18 @@ class NutritionCubit extends Cubit<NutritionState> {
   User? user;
   Stream? foodStream;
   Stream? nutritionStream;
-  int? calories;
-  int? carbs;
-  int? fiber;
-  int? iron;
-  int? protein;
-  int? fat;
-  int? currentCalories;
-  int? currentCarbs;
-  int? currentFiber;
-  int? currentIron;
-  int? currentProtein;
-  int? currentFat;
+  int calories=0;
+  int carbs=0;
+  int fiber=0;
+  int iron=0;
+  int protein=0;
+  int fat=0;
+  int currentCalories=0;
+  int currentCarbs=0;
+  int currentFiber=0;
+  int currentIron=0;
+  int currentProtein=0;
+  int currentFat=0;
 
   static NutritionCubit get(context) => BlocProvider.of(context);
 

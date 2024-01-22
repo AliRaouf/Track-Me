@@ -42,9 +42,9 @@ class NutritionContainer extends StatelessWidget {
                                 controller: nutritionController,
                                 decoration: InputDecoration(
                                     constraints: BoxConstraints(
-                                        maxWidth: screenWidth * 0.5,
+                                        maxWidth: screenWidth * 0.4,
                                         maxHeight:
-                                        screenHeight * 0.05)),
+                                        screenHeight * 0.04)),
                               ),
                             ],
                           ),

@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -53,10 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAAzgjUM5fiLp9oERdJZVoJeMDU3Sbklmg',
-    appId: '1:263311556567:android:2945c4b304e4bd8cc71592',
-    messagingSenderId: '263311556567',
-    projectId: 'track-me-e9fc1',
-    storageBucket: 'track-me-e9fc1.appspot.com',
+    apiKey: 'AIzaSyCFr58Dtt7lTFG8lcakkjBWPtF5kiDZFa0',
+    appId: '1:183292764862:android:306e1a200b5ac4ffc974ef',
+    messagingSenderId: '183292764862',
+    projectId: 'track-me-30b44',
+    storageBucket: 'track-me-30b44.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDscuaC6uIIr2PdIniudoaMf49kwEpKUuA',
+    appId: '1:183292764862:ios:53938063febcbf7fc974ef',
+    messagingSenderId: '183292764862',
+    projectId: 'track-me-30b44',
+    storageBucket: 'track-me-30b44.appspot.com',
+    iosBundleId: 'com.example.trackMe',
   );
 }
