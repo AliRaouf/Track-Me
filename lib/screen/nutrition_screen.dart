@@ -96,13 +96,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Name: "),
+                                          Text(" Name: "),
                                           TextField(
                                             controller: nameController,
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -112,7 +112,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Description: "),
+                                          Text(" Description: "),
                                           TextField(
                                             controller: descController,
                                             decoration: InputDecoration(
@@ -127,7 +127,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Calories: "),
+                                          Text(" Calories: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -137,7 +137,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -147,7 +147,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Protein: "),
+                                          Text(" Protein: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -157,7 +157,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -167,7 +167,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Carbs: "),
+                                          Text(" Carbs: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -177,7 +177,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -187,7 +187,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Fiber: "),
+                                          Text(" Fiber: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -197,7 +197,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -207,7 +207,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Fat: "),
+                                          Text(" Fat: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -217,7 +217,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -227,7 +227,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Iron: "),
+                                          Text(" Iron: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -237,7 +237,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                             decoration: InputDecoration(
                                                 constraints: BoxConstraints(
                                                     maxWidth:
-                                                        screenWidth * 0.45,
+                                                        screenWidth * 0.4,
                                                     maxHeight:
                                                         screenHeight * 0.04)),
                                           ),
@@ -349,29 +349,29 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         remaining: () {
                           if (cubit.calories == 0) {
                             return "Add your Target Now !";
-                          } else if (cubit.calories! - cubit.currentCalories! <=
+                          } else if (cubit.calories - cubit.currentCalories <=
                               0) {
                             return "Congrats You Finished it !";
                           } else {
-                            return "${cubit.calories! - cubit.currentCalories!} Remaining";
+                            return "${cubit.calories - cubit.currentCalories} Remaining";
                           }
                         }(),
                         color: Colors.red,
-                        percent: (cubit.currentCalories!.toInt() /
-                                        cubit.calories!)
+                        percent: (cubit.currentCalories.toInt() /
+                                        cubit.calories)
                                     .isNaN ||
-                                (cubit.currentCalories!.toInt() /
-                                        cubit.calories!)
+                                (cubit.currentCalories.toInt() /
+                                        cubit.calories)
                                     .isNegative ||
-                                (cubit.currentCalories!.toInt() /
-                                        cubit.calories!)
+                                (cubit.currentCalories.toInt() /
+                                        cubit.calories)
                                     .isInfinite ||
-                                (cubit.currentCalories!.toInt() /
-                                        cubit.calories!) >
+                                (cubit.currentCalories.toInt() /
+                                        cubit.calories) >
                                     1
                             ? 0
-                            : (cubit.currentCalories!.toInt() /
-                                cubit.calories!),
+                            : (cubit.currentCalories.toInt() /
+                                cubit.calories),
                       ),
                       NutritionContainer(
                         widget: Iconify(
@@ -381,28 +381,28 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         ),
                         text: "protein",
                         remaining: () {
-                          if (cubit.protein! == 0) {
+                          if (cubit.protein == 0) {
                             return "Add your Target Now !";
-                          } else if (cubit.protein! - cubit.currentProtein! <=
+                          } else if (cubit.protein - cubit.currentProtein <=
                               0) {
                             return "Congrats You Finished it !";
                           } else {
-                            return "${cubit.protein! - cubit.currentProtein!} Remaining";
+                            return "${cubit.protein - cubit.currentProtein} Remaining";
                           }
                         }(),
                         color: Colors.orange,
-                        percent: (cubit.currentProtein!.toInt() /
-                                        cubit.protein!)
+                        percent: (cubit.currentProtein.toInt() /
+                                        cubit.protein)
                                     .isNaN ||
-                                (cubit.currentProtein!.toInt() / cubit.protein!)
+                                (cubit.currentProtein.toInt() / cubit.protein)
                                     .isNegative ||
-                                (cubit.currentProtein!.toInt() / cubit.protein!)
+                                (cubit.currentProtein.toInt() / cubit.protein)
                                     .isInfinite ||
-                                (cubit.currentProtein!.toInt() /
-                                        cubit.protein!) >
+                                (cubit.currentProtein.toInt() /
+                                        cubit.protein) >
                                     1
                             ? 0
-                            : (cubit.currentProtein!.toInt() / cubit.protein!),
+                            : (cubit.currentProtein.toInt() / cubit.protein),
                       ),
                     ],
                   ),
@@ -419,26 +419,26 @@ class _NutritionScreenState extends State<NutritionScreen> {
                           ),
                           text: "carbohydrates",
                           remaining: () {
-                            if (cubit.carbs! == 0) {
+                            if (cubit.carbs == 0) {
                               return "Add your Target Now !";
-                            } else if (cubit.carbs! - cubit.currentCarbs! <=
+                            } else if (cubit.carbs - cubit.currentCarbs <=
                                 0) {
                               return "Congrats You Finished it !";
                             } else {
-                              return "${cubit.carbs! - cubit.currentCarbs!} Remaining";
+                              return "${cubit.carbs - cubit.currentCarbs} Remaining";
                             }
                           }(),
                           color: Colors.blueAccent,
-                          percent: (cubit.currentCarbs!.toInt() / cubit.carbs!)
+                          percent: (cubit.currentCarbs.toInt() / cubit.carbs)
                                       .isNaN ||
-                                  (cubit.currentCarbs!.toInt() / cubit.carbs!)
+                                  (cubit.currentCarbs.toInt() / cubit.carbs)
                                       .isNegative ||
-                                  (cubit.currentCarbs!.toInt() / cubit.carbs!)
+                                  (cubit.currentCarbs.toInt() / cubit.carbs)
                                       .isInfinite ||
-                                  (cubit.currentCarbs!.toInt() / cubit.carbs!) >
+                                  (cubit.currentCarbs.toInt() / cubit.carbs) >
                                       1
                               ? 0
-                              : (cubit.currentCarbs!.toInt() / cubit.carbs!),
+                              : (cubit.currentCarbs.toInt() / cubit.carbs),
                         ),
                         NutritionContainer(
                           widget: Iconify(
@@ -448,26 +448,26 @@ class _NutritionScreenState extends State<NutritionScreen> {
                           ),
                           text: "fiber",
                           remaining: () {
-                            if (cubit.fiber! == 0) {
+                            if (cubit.fiber == 0) {
                               return "Add your Target Now !";
-                            } else if (cubit.fiber! - cubit.currentFiber! <=
+                            } else if (cubit.fiber - cubit.currentFiber <=
                                 0) {
                               return "Congrats You Finished it !";
                             } else {
-                              return "${cubit.fiber! - cubit.currentFiber!} Remaining";
+                              return "${cubit.fiber - cubit.currentFiber} Remaining";
                             }
                           }(),
                           color: Colors.green,
-                          percent: (cubit.currentFiber!.toInt() / cubit.fiber!)
+                          percent: (cubit.currentFiber.toInt() / cubit.fiber)
                                       .isNaN ||
-                                  (cubit.currentFiber!.toInt() / cubit.fiber!)
+                                  (cubit.currentFiber.toInt() / cubit.fiber)
                                       .isNegative ||
-                                  (cubit.currentFiber!.toInt() / cubit.fiber!)
+                                  (cubit.currentFiber.toInt() / cubit.fiber)
                                       .isInfinite ||
-                                  (cubit.currentFiber!.toInt() / cubit.fiber!) >
+                                  (cubit.currentFiber.toInt() / cubit.fiber) >
                                       1
                               ? 0
-                              : (cubit.currentFiber!.toInt() / cubit.fiber!),
+                              : (cubit.currentFiber.toInt() / cubit.fiber),
                         ),
                       ],
                     ),
@@ -483,24 +483,24 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         ),
                         text: "fat",
                         remaining: () {
-                          if (cubit.fat! == 0) {
+                          if (cubit.fat == 0) {
                             return "Add your Target Now !";
-                          } else if (cubit.fat! - cubit.currentFat! <= 0) {
+                          } else if (cubit.fat - cubit.currentFat <= 0) {
                             return "Congrats You Finished it !";
                           } else {
-                            return "${cubit.fat! - cubit.currentFat!} Remaining";
+                            return "${cubit.fat - cubit.currentFat} Remaining";
                           }
                         }(),
                         color: Color(0xff33a3b2),
                         percent:
-                            (cubit.currentFat!.toInt() / cubit.fat!).isNaN ||
-                                    (cubit.currentFat!.toInt() / cubit.fat!)
+                            (cubit.currentFat.toInt() / cubit.fat).isNaN ||
+                                    (cubit.currentFat.toInt() / cubit.fat)
                                         .isNegative ||
-                                    (cubit.currentFat!.toInt() / cubit.fat!)
+                                    (cubit.currentFat.toInt() / cubit.fat)
                                         .isInfinite ||
-                                    (cubit.currentFat!.toInt() / cubit.fat!) > 1
+                                    (cubit.currentFat.toInt() / cubit.fat) > 1
                                 ? 0
-                                : (cubit.currentFat!.toInt() / cubit.fat!),
+                                : (cubit.currentFat.toInt() / cubit.fat),
                       ),
                       NutritionContainer(
                         widget: Iconify(
@@ -510,24 +510,24 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         ),
                         text: "iron",
                         remaining: () {
-                          if (cubit.iron! == 0) {
+                          if (cubit.iron == 0) {
                             return "Add your Target Now !";
-                          } else if (cubit.iron! - cubit.currentIron! <= 0) {
+                          } else if (cubit.iron - cubit.currentIron <= 0) {
                             return "Congrats You Finished it !";
                           } else {
-                            return "${cubit.iron! - cubit.currentIron!} Remaining";
+                            return "${cubit.iron - cubit.currentIron} Remaining";
                           }
                         }(),
                         color: Color(0xff7da1c3),
-                        percent: (cubit.currentIron!.toInt() / cubit.iron!)
+                        percent: (cubit.currentIron.toInt() / cubit.iron)
                                     .isNaN ||
-                                (cubit.currentIron!.toInt() / cubit.iron!)
+                                (cubit.currentIron.toInt() / cubit.iron)
                                     .isNegative ||
-                                (cubit.currentIron!.toInt() / cubit.iron!)
+                                (cubit.currentIron.toInt() / cubit.iron)
                                     .isInfinite ||
-                                (cubit.currentIron!.toInt() / cubit.iron!) > 1
+                                (cubit.currentIron.toInt() / cubit.iron) > 1
                             ? 0
-                            : (cubit.currentIron!.toInt() / cubit.iron!),
+                            : (cubit.currentIron.toInt() / cubit.iron),
                       ),
                     ],
                   ),

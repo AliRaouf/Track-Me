@@ -90,22 +90,23 @@ class _FoodScreenState extends State<FoodScreen> {
                       ),
                     ],
                   ),
-                  child: CustomTextField(
+                  child: CustomTextField(obscureText: false,readOnly: false,hint: "Search Here!",
+                  iconButton: IconButton(
+                    onPressed: () {
+                  if (cubit.recipeModel == null &&
+                  cubit.ingredientModel == null)
+                  CircularProgressIndicator();
+                  {
+                  if (FoodView == Food.Recipe) {
+                  cubit.getRecipe(searchController.text);
+                  print(searchController.text);
+                  } else if (FoodView == Food.Ingredient) {
+                  cubit.getIngredient(searchController.text);
+                  print(searchController.text);
+                  }
+                  }
+                  },color: Color(0xffF49E47), icon: Icon(Icons.search),),
                       controller: searchController,
-                  onPressed: () {
-                    if (cubit.recipeModel == null &&
-                        cubit.ingredientModel == null)
-                      CircularProgressIndicator();
-                    {
-                      if (FoodView == Food.Recipe) {
-                        cubit.getRecipe(searchController.text);
-                        print(searchController.text);
-                      } else if (FoodView == Food.Ingredient) {
-                        cubit.getIngredient(searchController.text);
-                        print(searchController.text);
-                      }
-                    }
-                  },color: Color(0xffF49E47),
                   ),
                 ),
                 cubit.recipeModel == null && cubit.ingredientModel == null

@@ -93,7 +93,7 @@ class WaterScreen extends StatelessWidget {
                           lineWidth: 12,
                           radius: screenWidth * 0.2,
                           center: Text(
-                            "1.5L \n   / \n3.5L",
+                            " 1.5L \n   / \n 3.5L",
                             style: GoogleFonts.itim(fontSize: 24),
                           ),
                         )),
@@ -128,7 +128,8 @@ class WaterScreen extends StatelessWidget {
             "How Much Did You Drink?",
             style: GoogleFonts.itim(fontSize: 18),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
                   decoration: BoxDecoration(
@@ -143,7 +144,7 @@ class WaterScreen extends StatelessWidget {
                       ))),
               Container(
                 margin: EdgeInsets.only(top: 15),
-                child: TextField(
+                child: TextField(textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     controller: numberController,
                     decoration: InputDecoration(
@@ -168,7 +169,11 @@ class WaterScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(999)),
                   child: IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.add,size: 32,color: Colors.white,))),
+                      icon: Icon(
+                        Icons.add,
+                        size: 32,
+                        color: Colors.white,
+                      ))),
             ],
           ),
         ]),

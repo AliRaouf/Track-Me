@@ -1,30 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../blocs/food/food_cubit.dart';
-
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.controller, this.onPressed, this.color,
-  });
+  CustomTextField(
+      {super.key,
+      required this.controller,
+      this.iconButton,
+      this.hint,
+      this.icon,
+      this.iconColor,
+      this.label,
+      required this.obscureText,
+      required this.readOnly});
 
   final TextEditingController controller;
-  final Function()? onPressed;
-  final Color? color;
+  Icon? icon;
+  String? hint;
+  String? label;
+  IconButton? iconButton;
+  bool obscureText;
+  bool readOnly;
+  Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+        readOnly: readOnly,
+        obscureText: obscureText,
         controller: controller,
         decoration: InputDecoration(
-          hintText: "Search Here!",
+          prefixIconColor:Color(0xff00a5fa),
+          prefixIcon: icon,
+          labelText: label,
+          labelStyle: GoogleFonts.itim(fontSize: 18, color: Color(0xff00a5fa)),
+          hintText: hint,
           hintStyle: GoogleFonts.itim(fontSize: 18),
           contentPadding: EdgeInsets.symmetric(horizontal: 8),
-          suffixIcon: IconButton(
-              onPressed: onPressed,
-              icon: Icon(Icons.search),
-              color: color),
+          suffixIcon: iconButton,
+          suffixIconColor: iconColor,
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(color: Colors.grey)),

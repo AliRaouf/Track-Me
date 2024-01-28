@@ -10,35 +10,41 @@ class ExerciseSearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var searchController = TextEditingController();
-    var cubit=ExerciseCubit.get(context);
-    return Scaffold(appBar: AppBar(
-      backgroundColor: Color(0xfffafafa),
-      centerTitle: true,
-      leading: IconButton(
-          color: Color(0xff9932CC),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_outlined)),
-      title: Text(
-        "Exercises",
-        style: GoogleFonts.itim(color: Color(0xff9932CC), fontSize: 32),
+    var cubit = ExerciseCubit.get(context);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xfffafafa),
+        centerTitle: true,
+        leading: IconButton(
+            color: Color(0xff9932CC),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+        title: Text(
+          "Exercises",
+          style: GoogleFonts.itim(color: Color(0xff9932CC), fontSize: 32),
+        ),
       ),
-    ),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 24),
+            padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24),
             child: CustomTextField(
+              obscureText: false,
+              readOnly: false,
+              hint: "Search Here!",
+              iconButton: IconButton(
+                  onPressed: () {
+                    cubit.getExercise(
+                        "name", searchController.text.toLowerCase());
+                  },
+                  icon: Icon(Icons.search),
+                  color: Color(0xff9932CC)),
               controller: searchController,
-              color: Color(0xff9932CC),
-              onPressed: () {
-                cubit.getExercise("name", searchController.text.toLowerCase());
-              },
             ),
           ),
-          ExerciseList(
-          )
+          ExerciseList()
         ],
       ),
     );

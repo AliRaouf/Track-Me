@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_me/blocs/user/user_cubit.dart';
 import 'package:track_me/components/custom_form_text_field.dart';
+import '../components/custom_text_field.dart';
 import '../components/gradient_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -68,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextFormField(
+                    child: CustomTextField(icon: Icon(Icons.person_outline),
                       controller: userNameController,
                       hint: "UserName",
                       label: "UserName",
@@ -78,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextFormField(
+                    child: CustomTextField(icon: Icon(Icons.mail_outline),
                       controller: emailController,
                       hint: "Email",
                       label: "Email",
@@ -88,12 +89,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextFormField(
+                    child: CustomTextField(icon: Icon(Icons.password_rounded),
                      controller: passwordController,
                       hint: "Password",
                       label: "Password",
                       obscureText: _isPasswordObscured,
-                      icon: IconButton(
+                      iconButton: IconButton(
                           onPressed: () {
                             setState(() {
                               _togglePasswordVisibility();
@@ -108,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ), Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextFormField(
+                    child: CustomTextField(icon: Icon(Icons.person_pin_circle_outlined),
                       controller: GenderController,
                       hint: "Gender",
                       label: "Gender",
