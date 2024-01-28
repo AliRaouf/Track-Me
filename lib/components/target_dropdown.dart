@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TargetDropDown extends StatefulWidget {
   final TextEditingController controller;
- TargetDropDown({Key? key, required this.controller}) : super(key: key);
+ const TargetDropDown({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<TargetDropDown> createState() => _TargetDropDownState();
@@ -46,18 +46,18 @@ class _TargetDropDownState extends State<TargetDropDown> {
       width: screenWidth * 0.6,
       inputDecorationTheme: InputDecorationTheme(
           constraints: BoxConstraints(maxHeight: screenHeight * 0.075),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent)),
-          enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent))),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent))),
       label: Text(
         "Choose Target",
         style: GoogleFonts.itim(fontSize: 16),
-      ),trailingIcon:Icon(Icons.arrow_drop_down_sharp,color: Colors.purple,),
-      selectedTrailingIcon:Icon(Icons.arrow_drop_up,color: Colors.purple,),
+      ),trailingIcon:const Icon(Icons.arrow_drop_down_sharp,color: Colors.purple,),
+      selectedTrailingIcon:const Icon(Icons.arrow_drop_up,color: Colors.purple,),
       controller: widget.controller,
-      textStyle: GoogleFonts.itim(color: Color(0xff9932CC)),
+      textStyle: GoogleFonts.itim(color: const Color(0xff9932CC)),
       dropdownMenuEntries: targets,
     );
   }

@@ -13,17 +13,17 @@ class ExerciseSearchScreen extends StatelessWidget {
     var cubit = ExerciseCubit.get(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xfffafafa),
+        backgroundColor: const Color(0xfffafafa),
         centerTitle: true,
         leading: IconButton(
-            color: Color(0xff9932CC),
+            color: const Color(0xff9932CC),
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         title: Text(
           "Exercises",
-          style: GoogleFonts.itim(color: Color(0xff9932CC), fontSize: 32),
+          style: GoogleFonts.itim(color: const Color(0xff9932CC), fontSize: 32),
         ),
       ),
       body: Column(
@@ -39,12 +39,12 @@ class ExerciseSearchScreen extends StatelessWidget {
                     cubit.getExercise(
                         "name", searchController.text.toLowerCase());
                   },
-                  icon: Icon(Icons.search),
-                  color: Color(0xff9932CC)),
+                  icon: const Icon(Icons.search),
+                  color: const Color(0xff9932CC)),
               controller: searchController,
             ),
           ),
-          ExerciseList()
+          const ExerciseList()
         ],
       ),
     );

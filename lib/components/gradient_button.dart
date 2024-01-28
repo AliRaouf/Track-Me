@@ -17,7 +17,7 @@ class GradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(width: screenWidth,height: screenHeight,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [Color(0xff00fb93), Color(0xff00a4fb)],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -25,12 +25,12 @@ class GradientButton extends StatelessWidget {
       ),
       child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.transparent),
-            shadowColor: MaterialStatePropertyAll(Colors.transparent),
+            backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
+            shadowColor: const MaterialStatePropertyAll(Colors.transparent),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30)))),
         onPressed:onpressed,
-        child: Text(text,style: GoogleFonts.itim(color: Color(0xfffafafa),fontSize: 22),),
+        child: Text(text,style: GoogleFonts.itim(color: const Color(0xfffafafa),fontSize: 22),),
       ),
     );
   }

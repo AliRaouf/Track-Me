@@ -18,10 +18,10 @@ class StartScreen extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
   listener: (context, state) {
     if(state is GuestLoginSuccessState){
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Signed in with a temporary account")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Signed in with a temporary account")));
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()));
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
     }else if(state is LoginErrorState){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString())));
     }
@@ -31,7 +31,7 @@ class StartScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          Container(child: Image.asset("assets/images/logo.png"),margin: EdgeInsets.symmetric(vertical: screenHeight*0.05),),
+          Container(margin: EdgeInsets.symmetric(vertical: screenHeight*0.05),child: Image.asset("assets/images/logo.png"),),
           GradientButton(
             screenWidth: screenWidth * 0.74,
             screenHeight: screenHeight * 0.075,
@@ -39,7 +39,7 @@ class StartScreen extends StatelessWidget {
             onpressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
+                  MaterialPageRoute(builder: (context) => const LoginScreen()));
             },
           ),
           Container(
@@ -51,7 +51,7 @@ class StartScreen extends StatelessWidget {
                 onpressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterScreen()));
+                      MaterialPageRoute(builder: (context) => const RegisterScreen()));
                 },
               )),
           GradientButton(

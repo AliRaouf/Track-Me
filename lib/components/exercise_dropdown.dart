@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ExerciseDropDown extends StatefulWidget {
   final TextEditingController controller;
-  ExerciseDropDown({Key? key, required this.controller}) : super(key: key);
+  const ExerciseDropDown({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<ExerciseDropDown> createState() => _ExerciseDropDownState();
@@ -36,18 +36,18 @@ class _ExerciseDropDownState extends State<ExerciseDropDown> {
       width: screenWidth * 0.6,
       inputDecorationTheme: InputDecorationTheme(
           constraints: BoxConstraints(maxHeight: screenHeight * 0.075),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent)),
-          enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.transparent))),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent)),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent))),
       label: Text(
         "Choose Exercise",
         style: GoogleFonts.itim(fontSize: 16),
-      ),trailingIcon:Icon(Icons.arrow_drop_down_sharp,color: Colors.purple,),
-      selectedTrailingIcon:Icon(Icons.arrow_drop_up,color: Colors.purple,),
+      ),trailingIcon:const Icon(Icons.arrow_drop_down_sharp,color: Colors.purple,),
+      selectedTrailingIcon:const Icon(Icons.arrow_drop_up,color: Colors.purple,),
       controller: widget.controller,
-      textStyle: GoogleFonts.itim(color: Color(0xff9932CC)),
+      textStyle: GoogleFonts.itim(color: const Color(0xff9932CC)),
       dropdownMenuEntries: exercises,
     );
   }

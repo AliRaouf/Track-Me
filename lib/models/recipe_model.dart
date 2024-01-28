@@ -11,7 +11,7 @@ class RecipeModel {
     if (json['results'] != null) {
       results = <Results>[];
       json['results'].forEach((v) {
-        results!.add(new Results.fromJson(v));
+        results!.add(Results.fromJson(v));
       });
     }
     offset = json['offset'];
@@ -49,10 +49,10 @@ class Results {
   String? imageType;
   Nutrition? nutrition;
   String? summary;
-  List<Null>? cuisines;
+  List<void>? cuisines;
   List<String>? dishTypes;
   List<String>? diets;
-  List<Null>? occasions;
+  List<void>? occasions;
   List<AnalyzedInstructions>? analyzedInstructions;
   double? spoonacularScore;
   String? spoonacularSourceUrl;
@@ -122,7 +122,7 @@ class Results {
     image = json['image'];
     imageType = json['imageType'];
     nutrition = json['nutrition'] != null
-        ? new Nutrition.fromJson(json['nutrition'])
+        ? Nutrition.fromJson(json['nutrition'])
         : null;
     summary = json['summary'];
     dishTypes = json['dishTypes'].cast<String>();
@@ -130,7 +130,7 @@ class Results {
     if (json['analyzedInstructions'] != null) {
       analyzedInstructions = <AnalyzedInstructions>[];
       json['analyzedInstructions'].forEach((v) {
-        analyzedInstructions!.add(new AnalyzedInstructions.fromJson(v));
+        analyzedInstructions!.add(AnalyzedInstructions.fromJson(v));
       });
     }
     spoonacularScore = json['spoonacularScore'];
@@ -157,26 +157,26 @@ class Nutrition {
     if (json['nutrients'] != null) {
       nutrients = <Nutrients>[];
       json['nutrients'].forEach((v) {
-        nutrients!.add(new Nutrients.fromJson(v));
+        nutrients!.add(Nutrients.fromJson(v));
       });
     }
     if (json['properties'] != null) {
       properties = <Properties>[];
       json['properties'].forEach((v) {
-        properties!.add(new Properties.fromJson(v));
+        properties!.add(Properties.fromJson(v));
       });
     }
     if (json['ingredients'] != null) {
       ingredients = <Ingredients>[];
       json['ingredients'].forEach((v) {
-        ingredients!.add(new Ingredients.fromJson(v));
+        ingredients!.add(Ingredients.fromJson(v));
       });
     }
     caloricBreakdown = json['caloricBreakdown'] != null
-        ? new CaloricBreakdown.fromJson(json['caloricBreakdown'])
+        ? CaloricBreakdown.fromJson(json['caloricBreakdown'])
         : null;
     weightPerServing = json['weightPerServing'] != null
-        ? new WeightPerServing.fromJson(json['weightPerServing'])
+        ? WeightPerServing.fromJson(json['weightPerServing'])
         : null;
   }
 }
@@ -228,7 +228,7 @@ class StepsIngredients {
     if (json['nutrients'] != null) {
       nutrients = <Nutrients>[];
       json['nutrients'].forEach((v) {
-        nutrients!.add(new Nutrients.fromJson(v));
+        nutrients!.add(Nutrients.fromJson(v));
       });
     }
   }
@@ -249,10 +249,10 @@ class CaloricBreakdown {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['percentProtein'] = this.percentProtein;
-    data['percentFat'] = this.percentFat;
-    data['percentCarbs'] = this.percentCarbs;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['percentProtein'] = percentProtein;
+    data['percentFat'] = percentFat;
+    data['percentCarbs'] = percentCarbs;
     return data;
   }
 }
@@ -280,7 +280,7 @@ class AnalyzedInstructions {
     if (json['steps'] != null) {
       steps = <Steps>[];
       json['steps'].forEach((v) {
-        steps!.add(new Steps.fromJson(v));
+        steps!.add(Steps.fromJson(v));
       });
     }
   }
@@ -301,13 +301,13 @@ class Steps {
     if (json['ingredients'] != null) {
       ingredients = <Ingredients>[];
       json['ingredients'].forEach((v) {
-        ingredients!.add(new Ingredients.fromJson(v));
+        ingredients!.add(Ingredients.fromJson(v));
       });
     }
     if (json['equipment'] != null) {
       equipment = <Equipment>[];
       json['equipment'].forEach((v) {
-        equipment!.add(new Equipment.fromJson(v));
+        equipment!.add(Equipment.fromJson(v));
       });
     }
   }
@@ -329,11 +329,11 @@ class Ingredients {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['localizedName'] = this.localizedName;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['localizedName'] = localizedName;
+    data['image'] = image;
     return data;
   }
 }
@@ -354,11 +354,11 @@ class Equipment {
     image = json['image'];
 
     Map<String, dynamic> toJson() {
-      final Map<String, dynamic> data = new Map<String, dynamic>();
-      data['id'] = this.id;
-      data['name'] = this.name;
-      data['localizedName'] = this.localizedName;
-      data['image'] = this.image;
+      final Map<String, dynamic> data = <String, dynamic>{};
+      data['id'] = id;
+      data['name'] = name;
+      data['localizedName'] = localizedName;
+      data['image'] = image;
       return data;
     }
   }

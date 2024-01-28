@@ -1,10 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iconify_flutter/icons/carbon.dart';
-import 'package:meta/meta.dart';
 import 'package:track_me/screen/login_screen.dart';
 
 part 'user_state.dart';
@@ -90,14 +87,14 @@ class UserCubit extends Cubit<UserState> {
   }
 
   void toggleOldPasswordVisibility() {
-    isOldPasswordObscured = !isOldPasswordObscured!;
+    isOldPasswordObscured = !isOldPasswordObscured;
   }
 
   void toggleNewPasswordVisibility() {
-    isNewPasswordObscured = !isNewPasswordObscured!;
+    isNewPasswordObscured = !isNewPasswordObscured;
   }
 
   void toggleConfirmNewPasswordVisibility() {
-    isConfirmNewPasswordObscured = !isConfirmNewPasswordObscured!;
+    isConfirmNewPasswordObscured = !isConfirmNewPasswordObscured;
   }
 }

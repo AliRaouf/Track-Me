@@ -32,8 +32,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => LoginScreen()));
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Password Changed Successfully")));
+                  builder: (context) => const LoginScreen()));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Password Changed Successfully")));
         }
       },
       builder: (context, state) {

@@ -16,17 +16,17 @@ class SingleExerciseScreen extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xfffafafa),
+        backgroundColor: const Color(0xfffafafa),
         centerTitle: true,
         leading: IconButton(
-            color: Color(0xff9932CC),
+            color: const Color(0xff9932CC),
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         title: Text(
           "${exerciseList![index].name}",
-          style: GoogleFonts.itim(color: Color(0xff9932CC), fontSize: 20),
+          style: GoogleFonts.itim(color: const Color(0xff9932CC), fontSize: 20),
         ),
       ),
       body: Padding(
@@ -34,7 +34,7 @@ class SingleExerciseScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: screenHeight * 0.4,
                 child:
                     Image(image: NetworkImage("${exerciseList![index].gifUrl}")),
@@ -46,23 +46,23 @@ class SingleExerciseScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text("BodyPart ",style: GoogleFonts.itim(color:Color(0xff9932CC),fontSize: 16),),
+                            Text("BodyPart ",style: GoogleFonts.itim(color:const Color(0xff9932CC),fontSize: 16),),
                             Text(": ${exerciseList![index].bodyPart}",style: GoogleFonts.itim(fontSize: 15)),
                           ],
                         ),
                         Row(
                           children: [
-                            Text("Targets ",style: GoogleFonts.itim(color:Color(0xff9932CC),fontSize: 16),),
+                            Text("Targets ",style: GoogleFonts.itim(color:const Color(0xff9932CC),fontSize: 16),),
                             Text(": ${exerciseList![index].target}",style: GoogleFonts.itim(fontSize: 15)),
                           ],
                         ),
                         Row(
                           children: [
-                            Text("Equipment ",style: GoogleFonts.itim(color:Color(0xff9932CC),fontSize: 16),),
+                            Text("Equipment ",style: GoogleFonts.itim(color:const Color(0xff9932CC),fontSize: 16),),
                             Text(": ${exerciseList![index].equipment}",style: GoogleFonts.itim(fontSize: 15)),
                           ],
                         ),
-                        Text("Secondary Muscles",style: GoogleFonts.itim(color:Color(0xff9932CC),fontSize: 16),),
+                        Text("Secondary Muscles",style: GoogleFonts.itim(color:const Color(0xff9932CC),fontSize: 16),),
                         for(int i=0; i < exerciseList![index].secondaryMuscles!.length;i++)
                           Text("${i+1}) ${exerciseList![index].secondaryMuscles![i]}",style: GoogleFonts.itim(fontSize: 15))
                           ]
@@ -71,7 +71,7 @@ class SingleExerciseScreen extends StatelessWidget {
                 ),
               ),Row(
                 children: [
-                  Text("Instructions",style: GoogleFonts.itim(color: Color(0xff9932CC),fontSize: 16),),
+                  Text("Instructions",style: GoogleFonts.itim(color: const Color(0xff9932CC),fontSize: 16),),
                 ],
               ),
               Flexible(

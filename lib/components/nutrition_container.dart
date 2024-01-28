@@ -37,8 +37,8 @@ class NutritionContainer extends StatelessWidget {
                         children: [
                           Row(mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text("Amount: "),
-                              TextField(keyboardType: TextInputType.numberWithOptions(decimal: false),
+                              const Text("Amount: "),
+                              TextField(keyboardType: const TextInputType.numberWithOptions(decimal: false),
                                 controller: nutritionController,
                                 decoration: InputDecoration(
                                     constraints: BoxConstraints(
@@ -61,16 +61,16 @@ class NutritionContainer extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text("Close",
-                        style: GoogleFonts.itim(color: Colors.red)),
                     style: ButtonStyle(
                         shape: MaterialStatePropertyAll(
                             RoundedRectangleBorder(
                                 borderRadius:
                                 BorderRadius.circular(20),
-                                side: BorderSide(color: Colors.red))),
+                                side: const BorderSide(color: Colors.red))),
                         backgroundColor:
-                        MaterialStatePropertyAll(Colors.white))),
+                        const MaterialStatePropertyAll(Colors.white)),
+                    child: Text("Close",
+                        style: GoogleFonts.itim(color: Colors.red))),
                 ElevatedButton(
                     onPressed: () {
                       NutritionCubit.get(context).updateNutritionData(
@@ -78,13 +78,13 @@ class NutritionContainer extends StatelessWidget {
                       NutritionCubit.get(context).receiveNutrition();
                     Navigator.of(context).pop();
                       },
+                    style: const ButtonStyle(
+                        backgroundColor:
+                        MaterialStatePropertyAll(Colors.red)),
                     child: Text(
                       "Update",
                       style: GoogleFonts.itim(color: Colors.white),
-                    ),
-                    style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStatePropertyAll(Colors.red)))
+                    ))
               ],
             );
           });
@@ -105,7 +105,7 @@ class NutritionContainer extends StatelessWidget {
                     Text(remaining,style: GoogleFonts.itim(color: Colors.white,fontSize: 12)),
                   ],
                 ),
-                LinearPercentIndicator(barRadius: Radius.circular(8),
+                LinearPercentIndicator(barRadius: const Radius.circular(8),
                   width: MediaQuery.of(context).size.width*0.38333,
                   lineHeight: 8.0,
                   percent: percent,

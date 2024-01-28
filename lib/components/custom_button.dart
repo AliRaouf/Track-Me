@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(side: MaterialStatePropertyAll(BorderSide(color: sColor??Colors.transparent)),
             backgroundColor: MaterialStatePropertyAll(bColor),
-            shadowColor: MaterialStatePropertyAll(Colors.transparent),
+            shadowColor: const MaterialStatePropertyAll(Colors.transparent),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30)))),
         onPressed:onpressed,

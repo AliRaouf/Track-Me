@@ -9,7 +9,6 @@ import 'package:track_me/blocs/user/user_cubit.dart';
 import 'package:track_me/blocs/water/water_cubit.dart';
 import 'package:track_me/screen/splash_screen.dart';
 
-import '../screen/start_screen.dart';
 
 class AppRoot extends StatelessWidget {
   const AppRoot({super.key});
@@ -26,7 +25,7 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context)=>ExerciseCubit()),
         BlocProvider(create: (context)=>WaterCubit()),
       ],
-      child: MaterialApp(debugShowCheckedModeBanner: false,
+      child: const MaterialApp(debugShowCheckedModeBanner: false,
           home:SplashScreen()),
     );
   }

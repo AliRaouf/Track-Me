@@ -67,7 +67,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
             state is SaveFoodLoading ||
             state is ReceiveFoodError ||
             state is ReceiveNutritionError) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -75,13 +75,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
         } else {
           return Scaffold(
               floatingActionButton: FloatingActionButton(
-                shape: CircleBorder(),
+                shape: const CircleBorder(),
                 onPressed: () {
                   showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text("Add Food"),
+                          title: const Text("Add Food"),
                           content: SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +96,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Name: "),
+                                          const Text(" Name: "),
                                           TextField(
                                             controller: nameController,
                                             decoration: InputDecoration(
@@ -112,7 +112,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Description: "),
+                                          const Text(" Description: "),
                                           TextField(
                                             controller: descController,
                                             decoration: InputDecoration(
@@ -127,7 +127,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Calories: "),
+                                          const Text(" Calories: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -147,7 +147,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Protein: "),
+                                          const Text(" Protein: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -167,7 +167,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Carbs: "),
+                                          const Text(" Carbs: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -187,7 +187,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Fiber: "),
+                                          const Text(" Fiber: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -207,7 +207,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Fat: "),
+                                          const Text(" Fat: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -227,7 +227,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(" Iron: "),
+                                          const Text(" Iron: "),
                                           TextField(
                                             keyboardType: TextInputType.number,
                                             onChanged: (value) {
@@ -256,17 +256,17 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: Text("Close",
-                                    style: GoogleFonts.itim(color: Colors.red)),
                                 style: ButtonStyle(
                                     shape: MaterialStatePropertyAll(
                                         RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                             side:
-                                                BorderSide(color: Colors.red))),
-                                    backgroundColor: MaterialStatePropertyAll(
-                                        Colors.white))),
+                                                const BorderSide(color: Colors.red))),
+                                    backgroundColor: const MaterialStatePropertyAll(
+                                        Colors.white)),
+                                child: Text("Close",
+                                    style: GoogleFonts.itim(color: Colors.red))),
                             ElevatedButton(
                                 onPressed: () {
                                   cubit.saveFood(
@@ -283,13 +283,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                                       carbs, fiber, fat, iron);
                                   Navigator.of(context).pop();
                                 },
+                                style: const ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStatePropertyAll(Colors.red)),
                                 child: Text(
                                   "Add",
                                   style: GoogleFonts.itim(color: Colors.white),
-                                ),
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStatePropertyAll(Colors.red)))
+                                ))
                           ],
                         );
                       });
@@ -298,7 +298,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                 child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(999),
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         colors: [Color(0xffCDBF4C), Color(0xff535707)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -306,31 +306,31 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     ),
                     width: 200,
                     height: 200,
-                    child: Icon(
+                    child: const Icon(
                       Icons.add,
                       size: 32,
                       color: Colors.white,
                     )),
               ),
-              backgroundColor: Color(0xfffafafa),
+              backgroundColor: const Color(0xfffafafa),
               appBar: AppBar(
-                backgroundColor: Color(0xfffafafa),
+                backgroundColor: const Color(0xfffafafa),
                 centerTitle: true,
                 leading: IconButton(
-                    color: Color(0xff535707),
+                    color: const Color(0xff535707),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     icon: const Icon(Icons.arrow_back_ios_new_outlined)),
                 title: GradientText(
                   "Nutrition",
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Color(0xffCDBF4C), Color(0xff535707)],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),
                   style:
-                      GoogleFonts.itim(color: Color(0xffFF8000), fontSize: 32),
+                      GoogleFonts.itim(color: const Color(0xffFF8000), fontSize: 32),
                 ),
               ),
               body: Padding(
@@ -340,7 +340,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       NutritionContainer(
-                        widget: Icon(
+                        widget: const Icon(
                           CupertinoIcons.flame_fill,
                           size: 14,
                           color: Colors.white,
@@ -491,7 +491,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                             return "${cubit.fat - cubit.currentFat} Remaining";
                           }
                         }(),
-                        color: Color(0xff33a3b2),
+                        color: const Color(0xff33a3b2),
                         percent:
                             (cubit.currentFat.toInt() / cubit.fat).isNaN ||
                                     (cubit.currentFat.toInt() / cubit.fat)
@@ -518,7 +518,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                             return "${cubit.iron - cubit.currentIron} Remaining";
                           }
                         }(),
-                        color: Color(0xff7da1c3),
+                        color: const Color(0xff7da1c3),
                         percent: (cubit.currentIron.toInt() / cubit.iron)
                                     .isNaN ||
                                 (cubit.currentIron.toInt() / cubit.iron)
@@ -538,7 +538,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         style: GoogleFonts.itim(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
-                            color: Color(0xff535707)),
+                            color: const Color(0xff535707)),
                       ),
                     ],
                   ),

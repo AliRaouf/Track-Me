@@ -33,17 +33,17 @@ class _FoodScreenState extends State<FoodScreen> {
       builder: (context, state) {
         return Scaffold(
             appBar: AppBar(
-              backgroundColor: Color(0xfffafafa),
+              backgroundColor: const Color(0xfffafafa),
               centerTitle: true,
               leading: IconButton(
-                  color: Color(0xffFF8000),
+                  color: const Color(0xffFF8000),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.arrow_back_ios_new_outlined)),
               title: Text(
                 "Food",
-                style: GoogleFonts.itim(color: Color(0xffFF8000), fontSize: 32),
+                style: GoogleFonts.itim(color: const Color(0xffFF8000), fontSize: 32),
               ),
             ),
             body: Center(
@@ -57,9 +57,9 @@ class _FoodScreenState extends State<FoodScreen> {
                       backgroundColor:
                           MaterialStateProperty.resolveWith((states) {
                         if (states.contains(MaterialState.selected)) {
-                          return Color(0xffFF9000);
+                          return const Color(0xffFF9000);
                         } else {
-                          return Color(0xfffafafa);
+                          return const Color(0xfffafafa);
                         }
                       })),
                   segments: const <ButtonSegment<Food>>[
@@ -79,14 +79,14 @@ class _FoodScreenState extends State<FoodScreen> {
                   width: screenWidth * 0.85,
                   margin: EdgeInsets.symmetric(vertical: screenHeight * 0.03),
                   decoration: BoxDecoration(
-                    color: Color(0xfffafafa),
+                    color: const Color(0xfffafafa),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
                         blurRadius: 5,
                         spreadRadius: 1,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -94,8 +94,9 @@ class _FoodScreenState extends State<FoodScreen> {
                   iconButton: IconButton(
                     onPressed: () {
                   if (cubit.recipeModel == null &&
-                  cubit.ingredientModel == null)
-                  CircularProgressIndicator();
+                  cubit.ingredientModel == null) {
+                    const CircularProgressIndicator();
+                  }
                   {
                   if (FoodView == Food.Recipe) {
                   cubit.getRecipe(searchController.text);
@@ -105,19 +106,19 @@ class _FoodScreenState extends State<FoodScreen> {
                   print(searchController.text);
                   }
                   }
-                  },color: Color(0xffF49E47), icon: Icon(Icons.search),),
+                  },color: const Color(0xffF49E47), icon: const Icon(Icons.search),),
                       controller: searchController,
                   ),
                 ),
                 cubit.recipeModel == null && cubit.ingredientModel == null
-                    ? SizedBox.shrink()
+                    ? const SizedBox.shrink()
                     : FoodView == Food.Recipe
                         ? Expanded(
                             child: ListView.builder(
-                                padding: EdgeInsets.symmetric(horizontal: 32),
+                                padding: const EdgeInsets.symmetric(horizontal: 32),
                                 itemCount:
                                     cubit.recipeModel?.results?.length ?? 0,
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return FoodContainer(
                                     ontap: () {
@@ -144,7 +145,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                 }),
                           )
                         : cubit.ingredientModel == null
-                            ? SizedBox.shrink()
+                            ? const SizedBox.shrink()
                             : FoodContainer(
                                 ontap: () {
                                   Navigator.of(context).push(

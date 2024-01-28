@@ -4,7 +4,7 @@ import 'package:track_me/blocs/exercise/exercise_cubit.dart';
 import 'package:track_me/screen/single_exercise_screen.dart';
 
 class ExerciseList extends StatelessWidget {
-  ExerciseList({super.key,});
+  const ExerciseList({super.key,});
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -13,7 +13,7 @@ class ExerciseList extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
           itemCount: cubit.exerciseList?.length ?? 10,
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -25,7 +25,7 @@ class ExerciseList extends StatelessWidget {
                   } ,
                     child: Container(
                       width: screenWidth * 0.8,height: screenHeight*0.213,
-                      decoration: BoxDecoration(color: Color(0xffCDB3F7),borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(color: const Color(0xffCDB3F7),borderRadius: BorderRadius.circular(15)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,

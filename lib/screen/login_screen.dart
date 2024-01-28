@@ -34,17 +34,17 @@ class _LoginScreenState extends State<LoginScreen> {
     if(state is LoginSuccessState){
       userCubit.getUserData();
       userCubit.receiverUserData();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Welcome To Track Me")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Welcome To Track Me")));
       Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()));
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
     }else if(state is LoginErrorState){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString())));
     }
   },
   builder: (context, state) {
     return Scaffold(
-      backgroundColor: Color(0xfffafafa),
+      backgroundColor: const Color(0xfffafafa),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: ListView(children: [Stack(

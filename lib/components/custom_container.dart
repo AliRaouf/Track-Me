@@ -35,11 +35,11 @@ class CustomContainer extends StatelessWidget {
             children: [
               Align(alignment: Alignment.topLeft,
                 child: Text(
-                  "$text",
-                  style: GoogleFonts.itim(fontSize: 17, color: Color(0xfffafafa)),
+                  text,
+                  style: GoogleFonts.itim(fontSize: 17, color: const Color(0xfffafafa)),
                 ),
               ),
-              widget??SizedBox.shrink()
+              widget??const SizedBox.shrink()
             ],
           ),
         ),

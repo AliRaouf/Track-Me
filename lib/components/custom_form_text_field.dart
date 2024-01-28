@@ -31,10 +31,10 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText!,
       validator:validate ,
-      decoration: InputDecoration(contentPadding: EdgeInsets.symmetric(vertical:15,horizontal: 15),
+      decoration: InputDecoration(contentPadding: const EdgeInsets.symmetric(vertical:15,horizontal: 15),
           hintText: hint,
           labelText: label,
-          labelStyle: GoogleFonts.itim(fontSize: 18,color: Color(0xff00a5fa)),
+          labelStyle: GoogleFonts.itim(fontSize: 18,color: const Color(0xff00a5fa)),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30),

@@ -23,9 +23,9 @@ class FoodContainer extends StatelessWidget {
       child: Container(
         height: Height,
         width: Width,
-        margin: EdgeInsets.symmetric(vertical: 8),
+        margin: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
-            color: Color(0xffFFD37E),
+            color: const Color(0xffFFD37E),
             borderRadius: BorderRadius.circular(8)),
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0),
@@ -40,7 +40,7 @@ class FoodContainer extends StatelessWidget {
                       "$title",
                       style: GoogleFonts.itim(
                           fontSize: 16,
-                          color: Color(0xff252525),
+                          color: const Color(0xff252525),
                           fontWeight: FontWeight.w400),
                     ),
                   ),
@@ -49,29 +49,29 @@ class FoodContainer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.255,
                     child: Text(
-                        "Cal:${calories}",
+                        "Cal:$calories",
                         style: GoogleFonts.itim(
                             fontSize: 12,
-                            color: Color(0xff252525))),
+                            color: const Color(0xff252525))),
                   ),
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.26,
                     child: Text(
-                        "Prot:${protein}",
+                        "Prot:$protein",
                         style: GoogleFonts.itim(
                             fontSize: 12,
-                            color: Color(0xff252525))),
+                            color: const Color(0xff252525))),
                   ),
-                  Container(
+                  SizedBox(
                     width: screenWidth * 0.26,
                     child: Text(
-                        "Carb:${carbs}",
+                        "Carb:$carbs",
                         style: GoogleFonts.itim(
                             fontSize: 12,
-                            color: Color(0xff252525))),
+                            color: const Color(0xff252525))),
                   )
                 ],
               )

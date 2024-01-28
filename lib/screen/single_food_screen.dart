@@ -21,19 +21,19 @@ class SingleFoodScreen extends StatelessWidget {
         .size
         .height;
     return Scaffold(
-      backgroundColor: Color(0xfffafafa),
+      backgroundColor: const Color(0xfffafafa),
       appBar: AppBar(
-        backgroundColor: Color(0xfffafafa),
+        backgroundColor: const Color(0xfffafafa),
         centerTitle: true,
         leading: IconButton(
-            color: Color(0xffFF8000),
+            color: const Color(0xffFF8000),
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         title: Text(
           "${recipe?.results?[index!].title ?? ingredient?.name}",
-          style: GoogleFonts.itim(color: Color(0xffFF8000), fontSize: 24),
+          style: GoogleFonts.itim(color: const Color(0xffFF8000), fontSize: 24),
         ),
       ),
       body: recipe != null
@@ -57,20 +57,20 @@ class SingleFoodScreen extends StatelessWidget {
                   Text(
                     "Recipe",
                     style: GoogleFonts.itim(
-                        color: Color(0xffff8000), fontSize: 18),
+                        color: const Color(0xffff8000), fontSize: 18),
                   ),
                 ],
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xfffafafa),
+                  color: const Color(0xfffafafa),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       blurRadius: 5,
                       spreadRadius: 1,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
@@ -78,7 +78,7 @@ class SingleFoodScreen extends StatelessWidget {
                 height: screenHeight * 0.24,
                 margin: EdgeInsets.only(bottom: screenHeight * 0.02),
                 child: ListView.builder(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     itemCount: recipe?.results?[index!]
                         .analyzedInstructions?[0].steps?.length,
                     itemBuilder: (context, count) {
@@ -95,20 +95,20 @@ class SingleFoodScreen extends StatelessWidget {
                   Text(
                     "Nutrition",
                     style: GoogleFonts.itim(
-                        color: Color(0xffff8000), fontSize: 18),
+                        color: const Color(0xffff8000), fontSize: 18),
                   ),
                 ],
               ),
               Container(
                   decoration: BoxDecoration(
-                    color: Color(0xfffafafa),
+                    color: const Color(0xfffafafa),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
                         blurRadius: 5,
                         spreadRadius: 1,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
@@ -223,7 +223,7 @@ class SingleFoodScreen extends StatelessWidget {
         ),
       )
           : Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             Row(
@@ -231,20 +231,20 @@ class SingleFoodScreen extends StatelessWidget {
                 Text(
                   "Nutrition",
                   style: GoogleFonts.itim(
-                      color: Color(0xffff8000), fontSize: 18),
+                      color: const Color(0xffff8000), fontSize: 18),
                 ),
               ],
             ),
             Container(
                 decoration: BoxDecoration(
-                  color: Color(0xfffafafa),
+                  color: const Color(0xfffafafa),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       blurRadius: 5,
                       spreadRadius: 1,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),

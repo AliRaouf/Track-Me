@@ -27,16 +27,16 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
   listener: (context, state) {
     if(state is GetExerciseSuccess){
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => ExerciseSearchScreen()));
+          MaterialPageRoute(builder: (context) => const ExerciseSearchScreen()));
     }
   },
   builder: (context, state) {
     return Scaffold(
-      backgroundColor: Color(0xfffafafa),
+      backgroundColor: const Color(0xfffafafa),
       body: Container(
         width: screenWidth,
         height: screenHeight,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
           image: AssetImage("assets/images/exercise_bg.png"),
           fit: BoxFit.cover,
@@ -45,7 +45,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: Color(0xfffafafa)),
+              color: const Color(0xfffafafa)),
           width: screenWidth * 0.7,
           height: screenHeight * 0.5,
           child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,18 +71,18 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                     text: 'Close',
                     onpressed: () {
                       Navigator.pop(context);
-                    }, bColor: Colors.white,sColor: Color(0xff9932CC), tColor: Color(0xff9932CC),
+                    }, bColor: Colors.white,sColor: const Color(0xff9932CC), tColor: const Color(0xff9932CC),
                   ),
                   CustomButton(
                     screenWidth: screenWidth * 0.25,
                     screenHeight: screenHeight * 0.05,
                     text: 'Search',
                     onpressed: () {
-                      print("${targetController.text}");
+                      print(targetController.text);
                       targetController.text==""?
                       cubit.getExercise("bodyPart",exerciseController.text.toLowerCase()):
                       cubit.getExercise("target",targetController.text.toLowerCase());
-                    }, bColor:Color(0xff9932CC), tColor: Color(0xfffafafa),
+                    }, bColor:const Color(0xff9932CC), tColor: const Color(0xfffafafa),
                   )
                 ],
               )

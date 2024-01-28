@@ -42,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (state is RegisterSuccessState) {
           cubit.showSnackBar(context, "Account Created Successfully");
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              context, MaterialPageRoute(builder: (context) => const LoginScreen()));
         } else if (state is RegisterErrorState) {
           cubit.showSnackBar(context, state.error.toString());
         }
@@ -63,7 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             radius: 64,
                             backgroundImage: MemoryImage(cubit.image!),
                           )
-                        : CircleAvatar(
+                        : const CircleAvatar(
                             backgroundColor: Colors.transparent,
                             radius: 64,
                             backgroundImage: NetworkImage(
@@ -71,6 +71,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                   )),
                   Positioned(
+                      bottom: screenHeight * 0.03,
+                      left: screenWidth * 0.55,
                       child: IconButton(
                           onPressed: () {
                             cubit.selectImage().then((image) {
@@ -79,9 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               });
                             });
                           },
-                          icon: Icon(Icons.add_a_photo_outlined)),
-                      bottom: screenHeight * 0.03,
-                      left: screenWidth * 0.55),
+                          icon: const Icon(Icons.add_a_photo_outlined))),
                   Row(
                     children: [
                       IconButton(
@@ -143,7 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           constraints:
                               BoxConstraints(maxHeight: screenHeight * 0.075),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide:
@@ -155,7 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       label: Text(
                         "Gender",
                         style: GoogleFonts.itim(
-                            fontSize: 18, color: Color(0xff00a5fa)),
+                            fontSize: 18, color: const Color(0xff00a5fa)),
                       ),
                       controller: genderController,
                       dropdownMenuEntries: genders,

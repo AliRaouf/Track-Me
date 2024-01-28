@@ -16,13 +16,13 @@ class _SplashScreenState extends State<SplashScreen> {
             () =>
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => StartScreen()),
+              MaterialPageRoute(builder: (context) => const StartScreen()),
             ));
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Color(0xfffafafa),
+    return Scaffold(backgroundColor: const Color(0xfffafafa),
       body: Center(
         child: Image.asset("assets/images/logo.png"),
       ),

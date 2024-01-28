@@ -29,13 +29,13 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         controller: controller,
         decoration: InputDecoration(
-          prefixIconColor:Color(0xff00a5fa),
+          prefixIconColor:const Color(0xff00a5fa),
           prefixIcon: icon,
           labelText: label,
-          labelStyle: GoogleFonts.itim(fontSize: 18, color: Color(0xff00a5fa)),
+          labelStyle: GoogleFonts.itim(fontSize: 18, color: const Color(0xff00a5fa)),
           hintText: hint,
           hintStyle: GoogleFonts.itim(fontSize: 18),
-          contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           suffixIcon: iconButton,
           suffixIconColor: iconColor,
           focusedBorder: OutlineInputBorder(

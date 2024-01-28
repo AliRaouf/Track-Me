@@ -16,19 +16,19 @@ class WaterScreen extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfffafafa),
+      backgroundColor: const Color(0xfffafafa),
       appBar: AppBar(
-        backgroundColor: Color(0xfffafafa),
+        backgroundColor: const Color(0xfffafafa),
         centerTitle: true,
         leading: IconButton(
-            color: Color(0xff1142D9),
+            color: const Color(0xff1142D9),
             onPressed: () {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         title: Text(
           "Water",
-          style: GoogleFonts.itim(color: Color(0xff1142D9), fontSize: 32),
+          style: GoogleFonts.itim(color: const Color(0xff1142D9), fontSize: 32),
         ),
       ),
       body: Padding(
@@ -50,7 +50,7 @@ class WaterScreen extends StatelessWidget {
                     : "Recommended is 2.7L",
                 hintStyle: GoogleFonts.itim(fontSize: 18),
                 contentPadding:
-                    EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(color: Color(0xff1142D9))),
@@ -63,7 +63,7 @@ class WaterScreen extends StatelessWidget {
               screenHeight: screenHeight * 0.05,
               text: "Save",
               onpressed: () {},
-              bColor: Color(0xff1142D9),
+              bColor: const Color(0xff1142D9),
               tColor: Colors.white),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +72,7 @@ class WaterScreen extends StatelessWidget {
               Container(
                 width: screenWidth * 0.38,
                 height: screenHeight * 0.45,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/images/filled_bottle.png"))),
               ),
@@ -83,12 +83,12 @@ class WaterScreen extends StatelessWidget {
                   children: [
                     Text("15 Cups Remaining",
                         style: GoogleFonts.itim(
-                            fontSize: 20, color: Color(0xff1142D9))),
+                            fontSize: 20, color: const Color(0xff1142D9))),
                     Container(
                         margin: EdgeInsets.only(top: screenHeight * 0.02),
                         child: CircularPercentIndicator(
                           circularStrokeCap: CircularStrokeCap.round,
-                          progressColor: Color(0xff1142D9),
+                          progressColor: const Color(0xff1142D9),
                           percent: 0.2,
                           lineWidth: 12,
                           radius: screenWidth * 0.2,
@@ -107,7 +107,7 @@ class WaterScreen extends StatelessWidget {
                       child: ElevatedButton(
                         style: ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Color(0xff2157FF)),
+                                const MaterialStatePropertyAll(Color(0xff2157FF)),
                             shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)))),
@@ -133,17 +133,17 @@ class WaterScreen extends StatelessWidget {
             children: [
               Container(
                   decoration: BoxDecoration(
-                      color: Color(0xff2157FF),
+                      color: const Color(0xff2157FF),
                       borderRadius: BorderRadius.circular(999)),
                   child: IconButton(
                       onPressed: () {},
-                      icon: Iconify(
+                      icon: const Iconify(
                         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14z"/></svg>',
                         color: Colors.white,
                         size: 32,
                       ))),
               Container(
-                margin: EdgeInsets.only(top: 15),
+                margin: const EdgeInsets.only(top: 15),
                 child: TextField(textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     controller: numberController,
@@ -153,7 +153,7 @@ class WaterScreen extends StatelessWidget {
                       hintText: "100mL",
                       hintStyle: GoogleFonts.itim(fontSize: 18),
                       contentPadding:
-                          EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                          const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide:
@@ -165,11 +165,11 @@ class WaterScreen extends StatelessWidget {
               ),
               Container(
                   decoration: BoxDecoration(
-                      color: Color(0xff2157FF),
+                      color: const Color(0xff2157FF),
                       borderRadius: BorderRadius.circular(999)),
                   child: IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.add,
                         size: 32,
                         color: Colors.white,
