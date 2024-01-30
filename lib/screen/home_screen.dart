@@ -29,8 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
     NutritionCubit.get(context).createNutritionDataSet();
     NutritionCubit.get(context).receiveNutrition();
     NutritionCubit.get(context).receiveFoodList();
-    WaterCubit.get(context).getUserData();
+    WaterCubit.get(context).getUser();
     WaterCubit.get(context).getUserGender();
+    WaterCubit.get(context).createWaterDataSet();
 
     super.initState();
   }
@@ -233,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const NutritionScreen()));
+                                builder: (context) => NutritionScreen()));
                       },
                     ),
                     CustomContainer(
@@ -263,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const WaterScreen()));
+                                    builder: (context) => WaterScreen()));
                           },
                         ),
                         Container(

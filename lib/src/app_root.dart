@@ -25,7 +25,7 @@ class AppRoot extends StatelessWidget {
         BlocProvider(create: (context)=>ExerciseCubit()),
         BlocProvider(create: (context)=>WaterCubit()),
       ],
-      child: const MaterialApp(debugShowCheckedModeBanner: false,
+      child: MaterialApp(debugShowCheckedModeBanner: false,
           home:SplashScreen()),
     );
   }

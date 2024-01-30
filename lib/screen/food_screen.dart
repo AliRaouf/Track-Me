@@ -136,11 +136,11 @@ class _FoodScreenState extends State<FoodScreen> {
                                     title: cubit
                                         .recipeModel?.results?[index].title,
                                     carbs: cubit.recipeModel?.results?[index]
-                                        .nutrition?.nutrients?[0].amount,
+                                        .nutrition?.nutrients?[3].amount,
                                     protein: cubit.recipeModel?.results?[index]
                                         .nutrition?.nutrients?[8].amount,
                                     calories: cubit.recipeModel?.results?[index]
-                                        .nutrition?.nutrients?[3].amount,
+                                        .nutrition?.nutrients?[0].amount,
                                   );
                                 }),
                           )

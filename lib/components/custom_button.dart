@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
     required this.screenWidth,
-    required this.screenHeight, required this.text, required this.onpressed, required this.bColor,this.sColor, required this.tColor
+    required this.screenHeight, required this.text, required this.onpressed, required this.bColor,this.sColor, required this.tColor, required this.fontSize, required this.borderColor
   });
 
   final double screenWidth;
@@ -15,13 +15,14 @@ class CustomButton extends StatelessWidget {
   final Color bColor;
   final Color tColor;
   Color? sColor;
-
+  final double fontSize;
+  final Color borderColor;
 
 
   @override
   Widget build(BuildContext context) {
     return Container(width: screenWidth,height: screenHeight,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),border: Border.all(color:borderColor )
       ),
       child: ElevatedButton(
         style: ButtonStyle(side: MaterialStatePropertyAll(BorderSide(color: sColor??Colors.transparent)),
@@ -30,7 +31,7 @@ class CustomButton extends StatelessWidget {
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30)))),
         onPressed:onpressed,
-        child: Text(text,style: GoogleFonts.itim(color: tColor,fontSize: 13),),
+        child: Text(text,style: GoogleFonts.itim(color: tColor,fontSize: fontSize),),
       ),
     );
   }

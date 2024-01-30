@@ -150,7 +150,7 @@ class NutritionCubit extends Cubit<NutritionState> {
 
   }
   addToCurrentNutrition(calorie,protein,carb,fiber,fat,iron) async {
-    emit(addToCurrentNutritionLoading());
+    emit(AddToCurrentNutritionLoading());
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     QuerySnapshot nutritionSnapshot = await firestore
         .collection("nutrition")
@@ -166,13 +166,12 @@ class NutritionCubit extends Cubit<NutritionState> {
       "currentFiber":FieldValue.increment(fiber),
       "currentIron":FieldValue.increment(iron),
     });
-    emit(addToCurrentNutritionSuccess());
+    emit(AddToCurrentNutritionSuccess());
   }
   String formatTime(Timestamp timestamp) {
     DateTime dateTime = timestamp.toDate();
 
     return DateFormat('EEE, hh:mm a').format(dateTime);
   }
-
 }
 

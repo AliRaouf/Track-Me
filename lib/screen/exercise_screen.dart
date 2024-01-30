@@ -65,7 +65,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   child: TargetDropDown(controller: targetController,)),
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  CustomButton(
+                  CustomButton(fontSize: 13,borderColor: Colors.white,
                     screenWidth: screenWidth * 0.25,
                     screenHeight: screenHeight * 0.05,
                     text: 'Close',
@@ -73,7 +73,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                       Navigator.pop(context);
                     }, bColor: Colors.white,sColor: const Color(0xff9932CC), tColor: const Color(0xff9932CC),
                   ),
-                  CustomButton(
+                  CustomButton(borderColor: Colors.white,
                     screenWidth: screenWidth * 0.25,
                     screenHeight: screenHeight * 0.05,
                     text: 'Search',
@@ -82,7 +82,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                       targetController.text==""?
                       cubit.getExercise("bodyPart",exerciseController.text.toLowerCase()):
                       cubit.getExercise("target",targetController.text.toLowerCase());
-                    }, bColor:const Color(0xff9932CC), tColor: const Color(0xfffafafa),
+                    }, bColor:const Color(0xff9932CC), tColor: const Color(0xfffafafa), fontSize: 13,
                   )
                 ],
               )
