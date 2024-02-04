@@ -23,6 +23,7 @@ class _WaterScreenState extends State<WaterScreen> {
   @override
   void initState() {
     WaterCubit.get(context).receiveWater();
+    WaterCubit.get(context).waterPercent();
     super.initState();
   }
 
@@ -35,6 +36,7 @@ class _WaterScreenState extends State<WaterScreen> {
       listener: (context, state) {
         if(state is UpdateWaterSuccess){
           setState(() {
+            cubit.waterPercent();
           });
         }
       },
@@ -48,6 +50,7 @@ class _WaterScreenState extends State<WaterScreen> {
                 color: Color(0xff1142D9),
                 onPressed: () {
                   Navigator.pop(context);
+                  cubit.waterPercent();
                 },
                 icon: Icon(Icons.arrow_back_ios_new_outlined)),
             title: Text(
@@ -60,7 +63,7 @@ class _WaterScreenState extends State<WaterScreen> {
                     showDialog(
                         context: context,
                         builder: (context) {
-                          return ResetDialog() ;
+                          return ResetDialog();
                         });
                   },
                   child: Padding(
@@ -104,6 +107,7 @@ class _WaterScreenState extends State<WaterScreen> {
                           await cubit.updateWaterData(
                               {"goal": int.parse(targetController.text)});
                           await cubit.receiveWater();
+                          cubit.waterPercent();
                           setState(() {});
                         },
                         bColor: Color(0xff1142D9),
@@ -142,7 +146,7 @@ class _WaterScreenState extends State<WaterScreen> {
                                       circularStrokeCap:
                                           CircularStrokeCap.round,
                                       progressColor: Color(0xff1142D9),
-                                      percent: cubit.waterPercent(),
+                                      percent: cubit.waterP,
                                       lineWidth: 12,
                                       radius: screenWidth * 0.2,
                                       center: Text(
@@ -163,6 +167,7 @@ class _WaterScreenState extends State<WaterScreen> {
                                     onpressed: () async {
                                       await cubit.addToCurrentWater(250);
                                       await cubit.receiveWater();
+                                      cubit.waterPercent();
                                       setState(() {});
                                     },
                                     screenWidth: screenWidth * 0.2,
@@ -207,6 +212,7 @@ class _WaterScreenState extends State<WaterScreen> {
                                         await cubit.addToCurrentWater(
                                             -int.parse(numberController.text));
                                         await cubit.receiveWater();
+                                        cubit.waterPercent();
                                         setState(() {});
                                       }
                                     },
@@ -234,6 +240,7 @@ class _WaterScreenState extends State<WaterScreen> {
                                       await cubit.addToCurrentWater(
                                           int.parse(numberController.text));
                                       await cubit.receiveWater();
+                                      cubit.waterPercent();
                                       setState(() {});
                                     },
                                     icon: Icon(

@@ -19,6 +19,9 @@ class UpdateNutritionError extends NutritionState {}
 class AddToCurrentNutritionLoading extends NutritionState {}
 class AddToCurrentNutritionSuccess extends NutritionState {}
 class AddToCurrentNutritionError extends NutritionState {}
+class ResetNutritionValueSuccess extends NutritionState {}
+class ResetNutritionValueLoading extends NutritionState {}
+class ResetNutritionValueError extends NutritionState {}
 
 
 
