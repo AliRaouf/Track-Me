@@ -32,7 +32,7 @@ class _FoodScreenState extends State<FoodScreen> {
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-            appBar: AppBar(
+            appBar: AppBar(forceMaterialTransparency: true,
               backgroundColor: const Color(0xfffafafa),
               centerTitle: true,
               leading: IconButton(

@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/exercise/exercise_cubit.dart';
-import 'package:track_me/components/custom_text_field.dart';
 import 'package:track_me/components/exercise_bottom_app_bar.dart';
-import 'package:track_me/components/exercise_list.dart';
+import 'package:track_me/components/favorite_list.dart';
 
 import 'exercise_screen.dart';
 
-class ExerciseSearchScreen extends StatelessWidget {
-  const ExerciseSearchScreen({super.key});
+class ExerciseFavoriteScreen extends StatefulWidget {
+  const ExerciseFavoriteScreen({super.key});
 
   @override
+  State<ExerciseFavoriteScreen> createState() => _ExerciseFavoriteScreenState();
+}
+
+class _ExerciseFavoriteScreenState extends State<ExerciseFavoriteScreen> {
+  @override
+  void initState() {
+ExerciseCubit.get(context).receiveExerciseList();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    var searchController = TextEditingController();
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     var cubit = ExerciseCubit.get(context);
@@ -30,7 +38,7 @@ class ExerciseSearchScreen extends StatelessWidget {
             },
             icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         title: Text(
-          "Exercises",
+          "Favorites",
           style: GoogleFonts.itim(color: const Color(0xff9932CC), fontSize: 32),
         ),
       ),
@@ -40,22 +48,9 @@ class ExerciseSearchScreen extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24),
-                child: CustomTextField(
-                  obscureText: false,
-                  readOnly: false,
-                  hint: "Search Here!",
-                  iconButton: IconButton(
-                      onPressed: () {
-                        cubit.getExercise(
-                            "name", searchController.text.toLowerCase());
-                      },
-                      icon: const Icon(Icons.search),
-                      color: const Color(0xff9932CC)),
-                  controller: searchController,
-                ),
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24),
               ),
-              ExerciseList()
+            FavoriteList(exerciseStream: cubit.exerciseStream!)
             ],
           ),
           Positioned(

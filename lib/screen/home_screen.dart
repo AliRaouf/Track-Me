@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:track_me/blocs/exercise/exercise_cubit.dart';
 import 'package:track_me/blocs/nutrition/nutrition_cubit.dart';
 import 'package:track_me/blocs/user/user_cubit.dart';
 import 'package:track_me/blocs/water/water_cubit.dart';
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.delayed(Duration(milliseconds: 1000), () {
       WaterCubit.get(context).waterPercent();
     });
-
+    ExerciseCubit.get(context).getUserData();
     super.initState();
   }
 

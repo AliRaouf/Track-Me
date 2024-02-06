@@ -5,6 +5,7 @@ import 'package:track_me/screen/single_exercise_screen.dart';
 
 class ExerciseList extends StatelessWidget {
   const ExerciseList({super.key,});
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -12,15 +13,16 @@ class ExerciseList extends StatelessWidget {
     var cubit = ExerciseCubit.get(context);
     return Expanded(
       child: ListView.builder(
-          itemCount: cubit.exerciseList?.length ?? 10,
+          itemCount: cubit.exerciseList?.length ?? 0,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  GestureDetector(onTap:(){
-                    Navigator.push(context,
+                  GestureDetector(onTap:()async{
+                    await ExerciseCubit.get(context).checkExercise(cubit.exerciseList?[index].name);
+                    await Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SingleExerciseScreen(index: index, exerciseList:cubit.exerciseList )));
                   } ,
                     child: Container(
