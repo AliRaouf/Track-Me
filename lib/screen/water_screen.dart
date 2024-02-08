@@ -34,7 +34,7 @@ class _WaterScreenState extends State<WaterScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<WaterCubit, WaterState>(
       listener: (context, state) {
-        if(state is UpdateWaterSuccess){
+        if (state is UpdateWaterSuccess) {
           setState(() {
             cubit.waterPercent();
           });
@@ -44,6 +44,7 @@ class _WaterScreenState extends State<WaterScreen> {
         return Scaffold(
           backgroundColor: Color(0xfffafafa),
           appBar: AppBar(
+            forceMaterialTransparency: true,
             backgroundColor: Color(0xfffafafa),
             centerTitle: true,
             leading: IconButton(
@@ -112,7 +113,8 @@ class _WaterScreenState extends State<WaterScreen> {
                         },
                         bColor: Color(0xff1142D9),
                         tColor: Colors.white,
-                        fontSize: 13, borderColor: Colors.white,
+                        fontSize: 13,
+                        borderColor: Colors.white,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +176,8 @@ class _WaterScreenState extends State<WaterScreen> {
                                     screenHeight: screenHeight * 0.1,
                                     bColor: Color(0xff2456fa),
                                     tColor: Colors.white,
-                                    fontSize: 15, borderColor: Colors.white,
+                                    fontSize: 15,
+                                    borderColor: Colors.white,
                                   ),
                                 )
                               ],

@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ExerciseDropDown extends StatefulWidget {
   final TextEditingController controller;
-  const ExerciseDropDown({Key? key, required this.controller}) : super(key: key);
+
+  const ExerciseDropDown({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   State<ExerciseDropDown> createState() => _ExerciseDropDownState();
@@ -11,7 +13,6 @@ class ExerciseDropDown extends StatefulWidget {
 
 class _ExerciseDropDownState extends State<ExerciseDropDown> {
   @override
-
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -44,8 +45,15 @@ class _ExerciseDropDownState extends State<ExerciseDropDown> {
       label: Text(
         "Choose Exercise",
         style: GoogleFonts.itim(fontSize: 16),
-      ),trailingIcon:const Icon(Icons.arrow_drop_down_sharp,color: Colors.purple,),
-      selectedTrailingIcon:const Icon(Icons.arrow_drop_up,color: Colors.purple,),
+      ),
+      trailingIcon: const Icon(
+        Icons.arrow_drop_down_sharp,
+        color: Colors.purple,
+      ),
+      selectedTrailingIcon: const Icon(
+        Icons.arrow_drop_up,
+        color: Colors.purple,
+      ),
       controller: widget.controller,
       textStyle: GoogleFonts.itim(color: const Color(0xff9932CC)),
       dropdownMenuEntries: exercises,

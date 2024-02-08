@@ -10,24 +10,28 @@ part 'exercise_state.dart';
 
 class ExerciseCubit extends Cubit<ExerciseState> {
   ExerciseCubit() : super(ExerciseInitial());
+
   static ExerciseCubit get(context) => BlocProvider.of(context);
   ExerciseModel? exerciseModel;
   Stream? exerciseStream;
   List<ExerciseModel>? exerciseList;
   User? user;
   bool? isExist;
+
   getUserData() {
     user = FirebaseAuth.instance.currentUser;
   }
-  getExercise(type,search) {
+
+  getExercise(type, search) {
     emit(GetExerciseLoading());
-    ExerciseDio.getData(type,search).then((value) {
+    ExerciseDio.getData(type, search).then((value) {
       List<ExerciseModel> exercises = ExerciseModel.fromJsonList(value.data);
-      exerciseList=exercises;
+      exerciseList = exercises;
       print(value.statusCode);
       emit(GetExerciseSuccess());
     });
   }
+
   checkExercise(name) async {
     emit(CheckExerciseLoading());
     final existingDocs = await FirebaseFirestore.instance
@@ -39,22 +43,21 @@ class ExerciseCubit extends Cubit<ExerciseState> {
     if (existingDocs.docs.isNotEmpty) {
       print('Document with name $name already exists');
       emit(ExerciseExists());
-      isExist=true;
-    }else{
+      isExist = true;
+    } else {
       emit(ExerciseDoesntExist());
-      isExist=false;
+      isExist = false;
     }
     emit(CheckExerciseSuccess());
   }
-  saveExercise(
-      name,
+
+  saveExercise(name,
       bodyPart,
       equipment,
       target,
       image,
       List<String>? instructions,
-      List<String>? secondaryMuscles,
-      ) async {
+      List<String>? secondaryMuscles,) async {
     emit(SaveExerciseLoading());
     try {
       final existingDocs = await FirebaseFirestore.instance
@@ -95,6 +98,7 @@ class ExerciseCubit extends Cubit<ExerciseState> {
       emit(SaveExerciseError());
     }
   }
+
   receiveExerciseList() {
     emit(ReceiveExerciseLoading());
     try {
@@ -104,11 +108,29 @@ class ExerciseCubit extends Cubit<ExerciseState> {
           .collection('exerciseLog')
           .snapshots();
       emit(ReceiveExerciseSuccess());
-      print("Food Received Successfully");
+      print("Exercises Received Successfully");
       print(exerciseStream!.length);
     } on Exception catch (e) {
-      print('Error receiving food entry: $e');
+      print('Error receiving Exercises entry: $e');
       emit(ReceiveExerciseError());
+    }
+  }
+
+  removeFromFavorite(name) async {
+    emit(RemoveExerciseLoading());
+    try {
+      await FirebaseFirestore.instance
+          .collection("exercises")
+          .doc(user!.email)
+          .collection("exerciseLog")
+          .doc(name)
+          .delete();
+      receiveExerciseList();
+      checkExercise(name);
+      emit(RemoveExerciseSuccess());
+    } catch (e) {
+      print('Error removing exercise: $e');
+      emit(RemoveExerciseError());
     }
   }
 }

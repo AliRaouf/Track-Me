@@ -18,6 +18,7 @@ class ExerciseSearchScreen extends StatelessWidget {
     var cubit = ExerciseCubit.get(context);
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor: const Color(0xfffafafa),
         centerTitle: true,
         leading: IconButton(

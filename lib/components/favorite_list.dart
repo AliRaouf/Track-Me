@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/exercise/exercise_cubit.dart';
-import 'package:track_me/screen/single_exercise_screen.dart';
+import 'package:track_me/screen/single_favorite_exercise_screen.dart';
 
 class FavoriteList extends StatefulWidget {
   const FavoriteList({
@@ -19,14 +19,8 @@ class FavoriteList extends StatefulWidget {
 class _FavoriteListState extends State<FavoriteList> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     var cubit = ExerciseCubit.get(context);
     return StreamBuilder(
         stream: widget.exerciseStream,
@@ -44,59 +38,54 @@ class _FavoriteListState extends State<FavoriteList> {
                         child: Column(
                           children: [
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SingleFavoriteExerciseScreen(
+                                              data: values.docs[index],
+                                            )));
+                              },
                               child: Container(
                                 width: screenWidth * 0.8,
                                 height: screenHeight * 0.213,
                                 decoration: BoxDecoration(
                                     color: const Color(0xffCDB3F7),
-                                    borderRadius:
-                                    BorderRadius.circular(15)),
+                                    borderRadius: BorderRadius.circular(15)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment
-                                        .spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Flexible(
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .start,
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "Exercise Name: ${values
-                                                  .docs[index]["name"]}",
-                                              style:
-                                              GoogleFonts.itim(),
-                                              overflow:
-                                              TextOverflow.fade,
+                                              "Exercise Name: ${values.docs[index]["name"]}",
+                                              style: GoogleFonts.itim(),
+                                              overflow: TextOverflow.fade,
                                             ),
                                             Text(
-                                                "Body Part: ${values
-                                                    .docs[index]["bodyPart"]}",
-                                                style: GoogleFonts
-                                                    .itim()),
+                                                "Body Part: ${values.docs[index]["bodyPart"]}",
+                                                style: GoogleFonts.itim()),
                                             Text(
-                                                "Targets: ${values
-                                                    .docs[index]["target"]}",
-                                                style: GoogleFonts
-                                                    .itim()),
+                                                "Targets: ${values.docs[index]["target"]}",
+                                                style: GoogleFonts.itim()),
                                           ],
                                         ),
                                       ),
                                       ClipRRect(
                                           borderRadius:
-                                          BorderRadius.circular(
-                                              15),
+                                              BorderRadius.circular(15),
                                           child: Image(
                                               image: NetworkImage(
-                                                  "${values
-                                                      .docs[index]["image"]}")))
+                                                  "${values.docs[index]["image"]}")))
                                     ],
                                   ),
                                 ),
@@ -108,9 +97,11 @@ class _FavoriteListState extends State<FavoriteList> {
                     }),
               );
             } else {
-              return Text(
-                "Start Adding Exercises!",
-                style: GoogleFonts.itim(fontWeight: FontWeight.bold),
+              return Center(
+                child: Text(
+                  "Start Adding Exercises!",
+                  style: GoogleFonts.itim(fontWeight: FontWeight.bold),
+                ),
               );
             }
           } else {

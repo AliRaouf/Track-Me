@@ -6,8 +6,12 @@ class CustomContainer extends StatelessWidget {
     super.key,
     required this.screenWidth,
     required this.screenHeight,
-    this.color, required this.text,this.widget,this.gradient, this.image, required this.onTap,
-
+    this.color,
+    required this.text,
+    this.widget,
+    this.gradient,
+    this.image,
+    required this.onTap,
   });
 
   final double screenWidth;
@@ -21,11 +25,15 @@ class CustomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: onTap ,
-      child: Container(margin: EdgeInsets.only(top: screenHeight*0.2),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(top: screenHeight * 0.2),
         width: screenWidth,
         height: screenHeight,
-        decoration: BoxDecoration(gradient: gradient,image: image,
+        decoration: BoxDecoration(
+            gradient: gradient,
+            image: image,
             borderRadius: BorderRadius.circular(10),
             color: color),
         child: Padding(
@@ -33,13 +41,15 @@ class CustomContainer extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Align(alignment: Alignment.topLeft,
+              Align(
+                alignment: Alignment.topLeft,
                 child: Text(
                   text,
-                  style: GoogleFonts.itim(fontSize: 17, color: const Color(0xfffafafa)),
+                  style: GoogleFonts.itim(
+                      fontSize: 17, color: const Color(0xfffafafa)),
                 ),
               ),
-              widget??const SizedBox.shrink()
+              widget ?? const SizedBox.shrink()
             ],
           ),
         ),

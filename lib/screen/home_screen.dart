@@ -26,10 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     NutritionCubit.get(context).getUserData();
-    NutritionCubit.get(context).receiveFoodList();
     NutritionCubit.get(context).createNutritionDataSet();
     NutritionCubit.get(context).receiveNutrition();
-    NutritionCubit.get(context).receiveFoodList();
     WaterCubit.get(context).getUser();
     WaterCubit.get(context).getUserGender();
     WaterCubit.get(context).receiveWater();
@@ -48,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
     var cubit = UserCubit.get(context);
     return BlocConsumer<UserCubit, UserState>(listener: (context, state) {
       if (state is UserSignOutSuccessState) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Logged out Successfully")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Logged out Successfully")));
       }
       if (state is ReceiveUserNameLoadingState ||
           state is ReceiveUserNameErrorState) {
@@ -58,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }, builder: (context, state) {
       return BlocConsumer<WaterCubit, WaterState>(
         listener: (context, state) {
-          if (state is ReceiveWaterSuccess){
+          if (state is ReceiveWaterSuccess) {
             WaterCubit.get(context).waterPercent();
           }
           if (state is WaterPercentSuccess) {
@@ -69,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return Scaffold(
             backgroundColor: const Color(0xfffafafa),
             appBar: AppBar(
+              forceMaterialTransparency: true,
               centerTitle: true,
               backgroundColor: const Color(0xfffafafa),
               iconTheme: const IconThemeData(color: Color(0xff00A4FB)),
@@ -189,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   GestureDetector(
                     onTap: () {
                       cubit.userSignOut(context);
-                      WaterCubit.get(context).waterP=0;
+                      WaterCubit.get(context).waterP = 0;
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -245,7 +244,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         widget: Image.asset("assets/images/avocado.png",
                             fit: BoxFit.fill),
-                        onTap: () {
+                        onTap: ()async{
+                          await NutritionCubit.get(context).receiveFoodList();
                           Navigator.push(
                               context,
                               MaterialPageRoute(

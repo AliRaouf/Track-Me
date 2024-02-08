@@ -1,50 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/exercise/exercise_cubit.dart';
-import 'package:track_me/models/exercise_model.dart';
 
-class SingleExerciseScreen extends StatefulWidget {
-  List<ExerciseModel>? exerciseList;
-  final int index;
+class SingleFavoriteExerciseScreen extends StatefulWidget {
+  SingleFavoriteExerciseScreen({
+    super.key,
+    required this.data,
+  });
 
-  SingleExerciseScreen(
-      {super.key, required this.exerciseList, required this.index});
+  final DocumentSnapshot data;
 
   @override
-  State<SingleExerciseScreen> createState() => _SingleExerciseScreenState();
+  State<SingleFavoriteExerciseScreen> createState() =>
+      _SingleFavoriteExerciseScreenState();
 }
 
-class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
+class _SingleFavoriteExerciseScreenState
+    extends State<SingleFavoriteExerciseScreen> {
   @override
   Widget build(BuildContext context) {
+    List<dynamic> instructions = widget.data['instructions'];
+    List<dynamic> secondaryMuscles = widget.data['secondaryMuscles'];
     var cubit = ExerciseCubit.get(context);
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return BlocConsumer<ExerciseCubit, ExerciseState>(
-      listener: (context, state) {
-        if (state is SaveExerciseSuccess) {
-          setState(() {});
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             forceMaterialTransparency: true,
+            backgroundColor: const Color(0xfffafafa),
+            centerTitle: true,
+            leading: IconButton(
+                color: const Color(0xff9932CC),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+            title: Text(
+              "${widget.data["name"]}",
+              style: GoogleFonts.itim(
+                  color: const Color(0xff9932CC), fontSize: 20),
+            ),
             actions: [
               IconButton(
-                  onPressed: () {
-                    setState(() {
-                      ExerciseCubit.get(context).saveExercise(
-                        "${widget.exerciseList![widget.index].name}",
-                        "${widget.exerciseList![widget.index].bodyPart}",
-                        "${widget.exerciseList![widget.index].equipment}",
-                        "${widget.exerciseList![widget.index].target}",
-                        "${widget.exerciseList![widget.index].gifUrl}",
-                        widget.exerciseList![widget.index].instructions,
-                        widget.exerciseList![widget.index].secondaryMuscles,
-                      );
-                    });
+                  onPressed: () async {
+                    await cubit.removeFromFavorite(widget.data["name"]);
                     print(cubit.isExist);
                   },
                   icon: (cubit.isExist ?? false)
@@ -57,19 +61,6 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                           color: Colors.grey,
                         ))
             ],
-            backgroundColor: const Color(0xfffafafa),
-            centerTitle: true,
-            leading: IconButton(
-                color: const Color(0xff9932CC),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios_new_outlined)),
-            title: Text(
-              "${widget.exerciseList![widget.index].name}",
-              style: GoogleFonts.itim(
-                  color: const Color(0xff9932CC), fontSize: 20),
-            ),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -78,9 +69,8 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                 children: [
                   SizedBox(
                     height: screenHeight * 0.4,
-                    child: Image(
-                        image: NetworkImage(
-                            "${widget.exerciseList![widget.index].gifUrl}")),
+                    child:
+                        Image(image: NetworkImage("${widget.data["image"]}")),
                   ),
                   Container(
                     child: Row(
@@ -96,8 +86,7 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                                         color: const Color(0xff9932CC),
                                         fontSize: 16),
                                   ),
-                                  Text(
-                                      ": ${widget.exerciseList![widget.index].bodyPart}",
+                                  Text(": ${widget.data["bodyPart"]}",
                                       style: GoogleFonts.itim(fontSize: 15)),
                                 ],
                               ),
@@ -109,8 +98,7 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                                         color: const Color(0xff9932CC),
                                         fontSize: 16),
                                   ),
-                                  Text(
-                                      ": ${widget.exerciseList![widget.index].target}",
+                                  Text(": ${widget.data["target"]}",
                                       style: GoogleFonts.itim(fontSize: 15)),
                                 ],
                               ),
@@ -122,8 +110,7 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                                         color: const Color(0xff9932CC),
                                         fontSize: 16),
                                   ),
-                                  Text(
-                                      ": ${widget.exerciseList![widget.index].equipment}",
+                                  Text(": ${widget.data["equipment"]}",
                                       style: GoogleFonts.itim(fontSize: 15)),
                                 ],
                               ),
@@ -133,13 +120,8 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                                     color: const Color(0xff9932CC),
                                     fontSize: 16),
                               ),
-                              for (int i = 0;
-                                  i <
-                                      widget.exerciseList![widget.index]
-                                          .secondaryMuscles!.length;
-                                  i++)
-                                Text(
-                                    "${i + 1}) ${widget.exerciseList![widget.index].secondaryMuscles![i]}",
+                              for (int i = 0; i < secondaryMuscles.length; i++)
+                                Text("${i + 1}) ${secondaryMuscles[i]}",
                                     style: GoogleFonts.itim(fontSize: 15))
                             ]),
                       ],
@@ -160,13 +142,8 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
                         color: Colors.transparent,
                         child: ListView(
                           children: [
-                            for (int i = 0;
-                                i <
-                                    widget.exerciseList![widget.index]
-                                        .instructions!.length;
-                                i++)
-                              Text(
-                                  "${i + 1}) ${widget.exerciseList![widget.index].instructions![i]}",
+                            for (int i = 0; i < instructions.length; i++)
+                              Text("${i + 1}) ${instructions[i]}",
                                   style: GoogleFonts.itim(fontSize: 15))
                           ],
                         )),

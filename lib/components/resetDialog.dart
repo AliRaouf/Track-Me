@@ -53,13 +53,12 @@ class _ResetDialogState extends State<ResetDialog> {
             screenWidth: screenWidth * 0.25,
             screenHeight: screenHeight * 0.05,
             text: "Yes",
-            onpressed: ()  async{
-             await WaterCubit.get(context)
+            onpressed: () async {
+              await WaterCubit.get(context)
                   .updateWaterData({"goal": 0, "currentWater": 0});
-             await WaterCubit.get(context).receiveWater();
-             setState(() {
-             });
-             Navigator.pop(context);
+              await WaterCubit.get(context).receiveWater();
+              setState(() {});
+              Navigator.pop(context);
             },
             bColor: Colors.blueAccent,
             tColor: Colors.white,

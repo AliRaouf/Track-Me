@@ -4,9 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:track_me/blocs/nutrition/nutrition_cubit.dart';
 
 class AddFoodDialog extends StatelessWidget {
-  AddFoodDialog({super.key,required this.nameController,required this.descController});
+  AddFoodDialog(
+      {super.key, required this.nameController, required this.descController});
+
   final TextEditingController nameController;
   final TextEditingController descController;
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -26,28 +29,23 @@ class AddFoodDialog extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Name: "),
                       TextField(
                         controller: nameController,
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Description: "),
                       TextField(
@@ -55,14 +53,12 @@ class AddFoodDialog extends StatelessWidget {
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
                                 maxWidth: screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Calories: "),
                       TextField(
@@ -73,16 +69,13 @@ class AddFoodDialog extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Protein: "),
                       TextField(
@@ -93,16 +86,13 @@ class AddFoodDialog extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Carbs: "),
                       TextField(
@@ -113,16 +103,13 @@ class AddFoodDialog extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Fiber: "),
                       TextField(
@@ -133,16 +120,13 @@ class AddFoodDialog extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Fat: "),
                       TextField(
@@ -153,16 +137,13 @@ class AddFoodDialog extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(" Iron: "),
                       TextField(
@@ -173,10 +154,8 @@ class AddFoodDialog extends StatelessWidget {
                         },
                         decoration: InputDecoration(
                             constraints: BoxConstraints(
-                                maxWidth:
-                                screenWidth * 0.4,
-                                maxHeight:
-                                screenHeight * 0.04)),
+                                maxWidth: screenWidth * 0.4,
+                                maxHeight: screenHeight * 0.04)),
                       ),
                     ],
                   ),
@@ -194,16 +173,11 @@ class AddFoodDialog extends StatelessWidget {
               Navigator.of(context).pop();
             },
             style: ButtonStyle(
-                shape: MaterialStatePropertyAll(
-                    RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(20),
-                        side:
-                        const BorderSide(color: Colors.red))),
-                backgroundColor: const MaterialStatePropertyAll(
-                    Colors.white)),
-            child: Text("Close",
-                style: GoogleFonts.itim(color: Colors.red))),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: const BorderSide(color: Colors.red))),
+                backgroundColor: const MaterialStatePropertyAll(Colors.white)),
+            child: Text("Close", style: GoogleFonts.itim(color: Colors.red))),
         ElevatedButton(
             onPressed: () {
               NutritionCubit.get(context).saveFood(
@@ -216,13 +190,12 @@ class AddFoodDialog extends StatelessWidget {
                   carbs,
                   iron,
                   FieldValue.serverTimestamp());
-              NutritionCubit.get(context).addToCurrentNutrition(calories, protein,
-                  carbs, fiber, fat, iron);
+              NutritionCubit.get(context).addToCurrentNutrition(
+                  calories, protein, carbs, fiber, fat, iron);
               Navigator.of(context).pop();
             },
             style: const ButtonStyle(
-                backgroundColor:
-                MaterialStatePropertyAll(Colors.red)),
+                backgroundColor: MaterialStatePropertyAll(Colors.red)),
             child: Text(
               "Add",
               style: GoogleFonts.itim(color: Colors.white),

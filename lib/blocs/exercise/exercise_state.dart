@@ -17,3 +17,6 @@ class CheckExerciseSuccess extends ExerciseState {}
 class ReceiveExerciseLoading extends ExerciseState {}
 class ReceiveExerciseSuccess extends ExerciseState {}
 class ReceiveExerciseError extends ExerciseState {}
+class RemoveExerciseLoading extends ExerciseState {}
+class RemoveExerciseSuccess extends ExerciseState {}
+class RemoveExerciseError extends ExerciseState {}

@@ -4,6 +4,7 @@ import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:track_me/screen/exercise_favorites_screen.dart';
 import 'package:track_me/screen/exercise_screen.dart';
 
+import '../blocs/exercise/exercise_cubit.dart';
 import '../screen/exercise_search_screen.dart';
 
 class ExerciseBottomAppBar extends StatelessWidget {
@@ -48,7 +49,9 @@ class ExerciseBottomAppBar extends StatelessWidget {
                     Iconify(ironIcon, color: Color(0xff9932CC)),
                     Text(
                       "Exercises",
-                      style: GoogleFonts.itim(color: Color(0xff9932CC),fontWeight: FontWeight.bold),
+                      style: GoogleFonts.itim(
+                          color: Color(0xff9932CC),
+                          fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -73,7 +76,9 @@ class ExerciseBottomAppBar extends StatelessWidget {
                     Icon(Icons.search_sharp, color: Color(0xff9932CC)),
                     Text(
                       "Search",
-                      style: GoogleFonts.itim(color: Color(0xff9932CC),fontWeight: FontWeight.bold),
+                      style: GoogleFonts.itim(
+                          color: Color(0xff9932CC),
+                          fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -82,9 +87,12 @@ class ExerciseBottomAppBar extends StatelessWidget {
             Container(
               width: screenWidth * 0.265,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ExerciseFavoriteScreen()));
+                onPressed: ()async{
+                  await ExerciseCubit.get(context).receiveExerciseList();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ExerciseFavoriteScreen()));
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.transparent),
@@ -97,7 +105,9 @@ class ExerciseBottomAppBar extends StatelessWidget {
                         color: Color(0xff9932CC)),
                     Text(
                       "Favorites",
-                      style: GoogleFonts.itim(color: Color(0xff9932CC),fontWeight: FontWeight.bold),
+                      style: GoogleFonts.itim(
+                          color: Color(0xff9932CC),
+                          fontWeight: FontWeight.bold),
                     )
                   ],
                 ),

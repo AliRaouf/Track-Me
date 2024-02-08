@@ -5,7 +5,12 @@ class FoodContainer extends StatelessWidget {
   const FoodContainer({
     super.key,
     required this.Height,
-    this.Width, this.title, this.calories, this.protein, this.carbs, required this.ontap,
+    this.Width,
+    this.title,
+    this.calories,
+    this.protein,
+    this.carbs,
+    required this.ontap,
   });
 
   final double Height;
@@ -19,7 +24,8 @@ class FoodContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    return GestureDetector(onTap: ontap,
+    return GestureDetector(
+      onTap: ontap,
       child: Container(
         height: Height,
         width: Width,
@@ -30,8 +36,7 @@ class FoodContainer extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Column(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Row(
                 children: [
@@ -51,27 +56,21 @@ class FoodContainer extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: screenWidth * 0.255,
-                    child: Text(
-                        "Cal:$calories",
+                    child: Text("Cal:$calories",
                         style: GoogleFonts.itim(
-                            fontSize: 12,
-                            color: const Color(0xff252525))),
+                            fontSize: 12, color: const Color(0xff252525))),
                   ),
                   SizedBox(
                     width: screenWidth * 0.26,
-                    child: Text(
-                        "Prot:$protein",
+                    child: Text("Prot:$protein",
                         style: GoogleFonts.itim(
-                            fontSize: 12,
-                            color: const Color(0xff252525))),
+                            fontSize: 12, color: const Color(0xff252525))),
                   ),
                   SizedBox(
                     width: screenWidth * 0.26,
-                    child: Text(
-                        "Carb:$carbs",
+                    child: Text("Carb:$carbs",
                         style: GoogleFonts.itim(
-                            fontSize: 12,
-                            color: const Color(0xff252525))),
+                            fontSize: 12, color: const Color(0xff252525))),
                   )
                 ],
               )

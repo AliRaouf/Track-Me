@@ -16,9 +16,10 @@ class ExerciseFavoriteScreen extends StatefulWidget {
 class _ExerciseFavoriteScreenState extends State<ExerciseFavoriteScreen> {
   @override
   void initState() {
-ExerciseCubit.get(context).receiveExerciseList();
+    ExerciseCubit.get(context).receiveExerciseList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -26,6 +27,7 @@ ExerciseCubit.get(context).receiveExerciseList();
     var cubit = ExerciseCubit.get(context);
     return Scaffold(
       appBar: AppBar(
+        forceMaterialTransparency: true,
         backgroundColor: const Color(0xfffafafa),
         centerTitle: true,
         leading: IconButton(
@@ -48,9 +50,9 @@ ExerciseCubit.get(context).receiveExerciseList();
             children: [
               Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24),
+                    const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24),
               ),
-            FavoriteList(exerciseStream: cubit.exerciseStream!)
+              FavoriteList(exerciseStream: cubit.exerciseStream!)
             ],
           ),
           Positioned(

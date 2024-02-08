@@ -20,6 +20,7 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
     NutritionCubit.get(context).receiveFoodList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     String pIcon =
@@ -32,13 +33,13 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fafafa" d="M12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10A10 10 0 0 1 2 12A10 10 0 0 1 12 2M9 7v10h2v-4h3v-2h-3V9h4V7z"/></svg>';
     String ironIcon =
         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fafafa" d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22l1.43-1.43L16.29 22l2.14-2.14l1.43 1.43l1.43-1.43l-1.43-1.43L22 16.29z"/></svg>';
-    var cubit=NutritionCubit.get(context);
+    var cubit = NutritionCubit.get(context);
     return StreamBuilder(
         stream: widget.foodStream,
         builder: (context, snapshot) {
-          if(snapshot.hasData){
+          if (snapshot.hasData) {
             QuerySnapshot values = snapshot.data as QuerySnapshot;
-            if(values.docs.isNotEmpty) {
+            if (values.docs.isNotEmpty) {
               return Expanded(
                   child: ListView.builder(
                       itemCount: values.docs.length,
@@ -49,8 +50,9 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
                               horizontal: 12, vertical: 4),
                           child: Column(
                             children: [
-                              Row(mainAxisAlignment: MainAxisAlignment
-                                  .spaceBetween,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     values.docs[index]["name"],
@@ -59,9 +61,9 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
                                         fontSize: 18),
                                   ),
                                   Text(
-                                    cubit.formatTime(
-                                        values.docs[index]["date"] ??
-                                            Timestamp(0, 0)),
+                                    cubit.formatTime(values.docs[index]
+                                            ["date"] ??
+                                        Timestamp(0, 0)),
                                     style: GoogleFonts.itim(
                                         fontSize: 12, color: Colors.blueGrey),
                                   )
@@ -79,55 +81,59 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
                               Row(
                                 children: [
                                   values.docs[index]["calories"] == null ||
-                                      values.docs[index]["calories"] == 0
+                                          values.docs[index]["calories"] == 0
                                       ? const SizedBox.shrink()
-                                      : const Icon(
-                                      CupertinoIcons.flame_fill, size: 16,
-                                      color: Colors.red),
+                                      : const Icon(CupertinoIcons.flame_fill,
+                                          size: 16, color: Colors.red),
                                   values.docs[index]["calories"] == 0
                                       ? const Text("")
                                       : Text(
-                                      "${values.docs[index]["calories"]} "),
+                                          "${values.docs[index]["calories"]} "),
                                   values.docs[index]["protein"] == null ||
-                                      values.docs[index]["protein"] == 0
+                                          values.docs[index]["protein"] == 0
                                       ? const SizedBox.shrink()
                                       : Iconify(
-                                    pIcon, color: Colors.orange, size: 18,),
+                                          pIcon,
+                                          color: Colors.orange,
+                                          size: 18,
+                                        ),
                                   values.docs[index]["protein"] == 0
                                       ? const Text("")
                                       : Text(
-                                      "${values.docs[index]["protein"]} "),
+                                          "${values.docs[index]["protein"]} "),
                                   values.docs[index]["carbohydrates"] == null ||
-                                      values.docs[index]["carbohydrates"] == 0
+                                          values.docs[index]["carbohydrates"] ==
+                                              0
                                       ? const SizedBox.shrink()
-                                      : Iconify(
-                                      cIcon, color: Colors.blue, size: 18),
+                                      : Iconify(cIcon,
+                                          color: Colors.blue, size: 18),
                                   values.docs[index]["carbohydrates"] == 0
                                       ? const Text("")
-                                      : Text("${values
-                                      .docs[index]["carbohydrates"]} "),
+                                      : Text(
+                                          "${values.docs[index]["carbohydrates"]} "),
                                   values.docs[index]["fat"] == null ||
-                                      values.docs[index]["fat"] == 0
+                                          values.docs[index]["fat"] == 0
                                       ? const SizedBox.shrink()
-                                      : Iconify(fIcon, color: const Color(0xff33a3b2),
-                                      size: 18),
+                                      : Iconify(fIcon,
+                                          color: const Color(0xff33a3b2),
+                                          size: 18),
                                   values.docs[index]["fat"] == 0
                                       ? const Text("")
                                       : Text("${values.docs[index]["fat"]} "),
                                   values.docs[index]["fiber"] == null ||
-                                      values.docs[index]["fiber"] == 0
+                                          values.docs[index]["fiber"] == 0
                                       ? const SizedBox.shrink()
-                                      : Iconify(
-                                      leafIcon, color: Colors.green, size: 18),
+                                      : Iconify(leafIcon,
+                                          color: Colors.green, size: 18),
                                   values.docs[index]["fiber"] == 0
                                       ? const Text("")
                                       : Text("${values.docs[index]["fiber"]} "),
                                   values.docs[index]["iron"] == null ||
-                                      values.docs[index]["iron"] == 0
+                                          values.docs[index]["iron"] == 0
                                       ? const SizedBox.shrink()
-                                      : Iconify(
-                                      ironIcon, color: const Color(0xff7da1c3),
-                                      size: 18),
+                                      : Iconify(ironIcon,
+                                          color: const Color(0xff7da1c3),
+                                          size: 18),
                                   values.docs[index]["iron"] == 0
                                       ? const Text("")
                                       : Text("${values.docs[index]["iron"]} "),
@@ -136,16 +142,16 @@ class _NutritionFoodListState extends State<NutritionFoodList> {
                             ],
                           ),
                         );
-                      }
-                  )
+                      }));
+            } else {
+              return Text(
+                "Add Food Now!",
+                style: GoogleFonts.itim(fontWeight: FontWeight.bold),
               );
-            }else{
-              return Text("Add Food Now!",style: GoogleFonts.itim(fontWeight: FontWeight.bold),);
             }
-          }else{
-             return const SizedBox.shrink();
+          } else {
+            return const SizedBox.shrink();
           }
-        }
-    );
+        });
   }
 }

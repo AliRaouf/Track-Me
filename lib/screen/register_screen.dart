@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     const DropdownMenuEntry(value: "Female", label: "Female"),
   ];
   late MemoryImage? _selectedImage;
+
   void _togglePasswordVisibility() {
     setState(() {
       _isPasswordObscured = !_isPasswordObscured;
@@ -41,8 +41,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       listener: (context, state) {
         if (state is RegisterSuccessState) {
           cubit.showSnackBar(context, "Account Created Successfully");
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
         } else if (state is RegisterErrorState) {
           cubit.showSnackBar(context, state.error.toString());
         }
@@ -103,7 +103,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hint: "UserName",
                       controller: usernameController,
                       label: "UserName",
-                      obscureText: false, readOnly: false,
+                      obscureText: false,
+                      readOnly: false,
                     ),
                   ),
                   Container(
@@ -113,7 +114,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hint: "Email",
                       controller: emailController,
                       label: "Email",
-                      obscureText: false, readOnly: false,
+                      obscureText: false,
+                      readOnly: false,
                     ),
                   ),
                   Container(
@@ -134,7 +136,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ? Icons.visibility
                               : Icons.visibility_off)),
                       iconColor:
-                          _isPasswordObscured ? Colors.blue : Colors.grey, readOnly: false,
+                          _isPasswordObscured ? Colors.blue : Colors.grey,
+                      readOnly: false,
                     ),
                   ),
                   DropdownMenu<String>(
@@ -143,7 +146,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           constraints:
                               BoxConstraints(maxHeight: screenHeight * 0.075),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 10),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30),
                               borderSide:
@@ -177,8 +181,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             passwordController.text,
                             usernameController.text,
                             genderController.text,
-                            cubit.image
-                        );
+                            cubit.image);
                       },
                     ),
                   ),

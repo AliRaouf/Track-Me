@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_me/blocs/user/user_cubit.dart';
@@ -13,8 +12,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   bool _isPasswordObscured = true;
+
   void _togglePasswordVisibility() {
     setState(() {
       _isPasswordObscured = !_isPasswordObscured;
@@ -26,10 +25,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     var cubit = UserCubit.get(context);
-    TextEditingController passwordController = TextEditingController(text: cubit.password??"");
-    TextEditingController userNameController = TextEditingController(text: cubit.userName??"");
-    TextEditingController emailController = TextEditingController(text: cubit.user?.email??"");
-    TextEditingController GenderController = TextEditingController(text: cubit.gender??"");
+    TextEditingController passwordController =
+        TextEditingController(text: cubit.password ?? "");
+    TextEditingController userNameController =
+        TextEditingController(text: cubit.userName ?? "");
+    TextEditingController emailController =
+        TextEditingController(text: cubit.user?.email ?? "");
+    TextEditingController GenderController =
+        TextEditingController(text: cubit.gender ?? "");
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -42,18 +45,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Center(
                       child: Container(
-                        margin: EdgeInsets.symmetric(vertical: screenHeight * 0.05),
-                        child: CircleAvatar(
-                          radius: 64,
-                          backgroundImage: NetworkImage(cubit.imageUrl),
-                          backgroundColor: Colors.white,
-                          onBackgroundImageError:(exception, stackTrace) {
-                            setState(() {
-                              cubit.imageUrl = 'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg';
-                            });
-                          },
-                        )
-                      )),
+                          margin: EdgeInsets.symmetric(
+                              vertical: screenHeight * 0.05),
+                          child: CircleAvatar(
+                            radius: 64,
+                            backgroundImage: NetworkImage(cubit.imageUrl),
+                            backgroundColor: Colors.white,
+                            onBackgroundImageError: (exception, stackTrace) {
+                              setState(() {
+                                cubit.imageUrl =
+                                    'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg';
+                              });
+                            },
+                          ))),
                   Positioned(
                       bottom: screenHeight * 0.03,
                       left: screenWidth * 0.55,
@@ -68,28 +72,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextField(icon: const Icon(Icons.person_outline),
+                    child: CustomTextField(
+                      icon: const Icon(Icons.person_outline),
                       controller: userNameController,
                       hint: "UserName",
                       label: "UserName",
-                      obscureText: false, readOnly: true,
+                      obscureText: false,
+                      readOnly: true,
                     ),
                   ),
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextField(icon: const Icon(Icons.mail_outline),
+                    child: CustomTextField(
+                      icon: const Icon(Icons.mail_outline),
                       controller: emailController,
                       hint: "Email",
                       label: "Email",
-                      obscureText: false, readOnly: true,
+                      obscureText: false,
+                      readOnly: true,
                     ),
                   ),
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextField(icon: const Icon(Icons.password_rounded),
-                     controller: passwordController,
+                    child: CustomTextField(
+                      icon: const Icon(Icons.password_rounded),
+                      controller: passwordController,
                       hint: "Password",
                       label: "Password",
                       obscureText: _isPasswordObscured,
@@ -103,16 +112,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ? Icons.visibility
                               : Icons.visibility_off)),
                       iconColor:
-                      _isPasswordObscured ? Colors.blue : Colors.grey, readOnly: true,
+                          _isPasswordObscured ? Colors.blue : Colors.grey,
+                      readOnly: true,
                     ),
-                  ), Container(
+                  ),
+                  Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextField(icon: const Icon(Icons.person_pin_circle_outlined),
+                    child: CustomTextField(
+                      icon: const Icon(Icons.person_pin_circle_outlined),
                       controller: GenderController,
                       hint: "Gender",
                       label: "Gender",
-                      obscureText: false, readOnly: true,
+                      obscureText: false,
+                      readOnly: true,
                     ),
                   ),
                   Container(

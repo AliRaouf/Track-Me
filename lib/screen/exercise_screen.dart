@@ -20,11 +20,12 @@ class ExerciseScreen extends StatefulWidget {
 class _ExerciseScreenState extends State<ExerciseScreen> {
   var exerciseController = TextEditingController();
   var targetController = TextEditingController();
+
   @override
   void initState() {
-ExerciseCubit.get(context).receiveExerciseList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     var cubit = ExerciseCubit.get(context);
@@ -99,7 +100,8 @@ ExerciseCubit.get(context).receiveExerciseList();
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const HomeScreen()));
+                                          builder: (context) =>
+                                              const HomeScreen()));
                                 },
                                 bColor: Colors.white,
                                 sColor: const Color(0xff9932CC),
@@ -130,10 +132,10 @@ ExerciseCubit.get(context).receiveExerciseList();
                   ],
                 )),
               ),
-          Positioned(
-            left: screenWidth * 0.1,
-            top: screenHeight * 0.9,
-            child: ExerciseBottomAppBar(color: Color(0x40FFFFFF)))
+              Positioned(
+                  left: screenWidth * 0.1,
+                  top: screenHeight * 0.9,
+                  child: ExerciseBottomAppBar(color: Color(0x40FFFFFF)))
             ],
           ),
         );
@@ -141,5 +143,3 @@ ExerciseCubit.get(context).receiveExerciseList();
     );
   }
 }
-
-

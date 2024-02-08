@@ -14,12 +14,9 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-
   var oldPasswordController = TextEditingController();
   var newPasswordController = TextEditingController();
   var confirmNewPasswordController = TextEditingController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +25,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     var cubit = UserCubit.get(context);
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
-        if(state is ChangeUserPasswordSuccessState){
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const LoginScreen()));
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Password Changed Successfully")));
+        if (state is ChangeUserPasswordSuccessState) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()));
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Password Changed Successfully")));
         }
       },
       builder: (context, state) {
@@ -77,8 +73,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           icon: Icon(cubit.isOldPasswordObscured
                               ? Icons.visibility
                               : Icons.visibility_off)),
-                      iconColor:
-                          cubit.isOldPasswordObscured ? Colors.blue : Colors.grey, readOnly: false,
+                      iconColor: cubit.isOldPasswordObscured
+                          ? Colors.blue
+                          : Colors.grey,
+                      readOnly: false,
                     ),
                   ),
                   Container(
@@ -98,19 +96,23 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           icon: Icon(cubit.isNewPasswordObscured
                               ? Icons.visibility
                               : Icons.visibility_off)),
-                      iconColor:
-                      cubit.isNewPasswordObscured ? Colors.blue : Colors.grey, readOnly: false,
+                      iconColor: cubit.isNewPasswordObscured
+                          ? Colors.blue
+                          : Colors.grey,
+                      readOnly: false,
                     ),
                   ),
                   Container(
                     width: screenWidth * 0.8,
                     margin: EdgeInsets.only(bottom: screenHeight * 0.05),
-                    child: CustomTextFormField(validate: (data){
-                        if (confirmNewPasswordController.text != newPasswordController.text) {
-                        return 'Passwords do not match';
+                    child: CustomTextFormField(
+                      validate: (data) {
+                        if (confirmNewPasswordController.text !=
+                            newPasswordController.text) {
+                          return 'Passwords do not match';
                         }
                         return null;
-                        },
+                      },
                       hint: "Confirm New Password",
                       controller: confirmNewPasswordController,
                       label: "Confirm New Password",
@@ -124,8 +126,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           icon: Icon(cubit.isConfirmNewPasswordObscured
                               ? Icons.visibility
                               : Icons.visibility_off)),
-                      iconColor:
-                      cubit.isConfirmNewPasswordObscured ? Colors.blue : Colors.grey, readOnly: false,
+                      iconColor: cubit.isConfirmNewPasswordObscured
+                          ? Colors.blue
+                          : Colors.grey,
+                      readOnly: false,
                     ),
                   ),
                   GradientButton(
