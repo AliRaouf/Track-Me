@@ -12,6 +12,7 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitial());
   static RegisterCubit get(context) => BlocProvider.of(context);
+  String error="";
   Uint8List? image;
   Future<String>uploadImage(Uint8List file)async{
     String imgName=FirebaseAuth.instance.currentUser!.email!;
@@ -21,22 +22,33 @@ class RegisterCubit extends Cubit<RegisterState> {
     String downloadUrl = await snapshot.ref.getDownloadURL();
     return downloadUrl;
   }
-  registerUser(String email, String password,String userName, String gender,Uint8List? file) {
+  registerUser(String email, String password,String userName, String gender,Uint8List? file) async {
     emit(RegisterLoadingState());
-    FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password)
-        .then((value) {
-      if (file != null) {
+    try {
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      ); if (file != null) {
         saveUser(email, password, userName, gender, file);
       } else {
-        saveUser(email, password, userName, gender,Uint8List.fromList([]));  // Pass null for the image parameter
+        saveUser(email, password, userName, gender,Uint8List.fromList([]));
       }
       emit(RegisterSuccessState());
-      print("register success");
-    }).catchError((error) {
-      emit(RegisterErrorState(error));
-      print("couldnt register user $error");
-    });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        error=('An account already exists for that email.');
+        emit(RegisterErrorState(error));
+      } else if (e.code == 'weak-password') {
+        error=('The password provided is too weak.');
+        emit(RegisterErrorState(error));
+      } else {
+        error=e.message!;
+        emit(RegisterErrorState(error));
+      }
+    } catch (e) {
+      print(e);
+      emit(RegisterErrorState(e));
+    }
   }
 
   saveUser(email, password, username, gender,file)async{

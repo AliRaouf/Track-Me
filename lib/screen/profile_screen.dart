@@ -41,31 +41,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: ListView(children: [
-              Stack(
-                children: [
-                  Center(
-                      child: Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: screenHeight * 0.05),
-                          child: CircleAvatar(
-                            radius: 64,
-                            backgroundImage: NetworkImage(cubit.imageUrl),
-                            backgroundColor: Colors.white,
-                            onBackgroundImageError: (exception, stackTrace) {
-                              setState(() {
-                                cubit.imageUrl =
-                                    'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg';
-                              });
-                            },
-                          ))),
-                  Positioned(
-                      bottom: screenHeight * 0.03,
-                      left: screenWidth * 0.55,
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.add_a_photo_outlined))),
-                ],
-              ),
+              Center(
+                  child: Container(
+                      margin: EdgeInsets.symmetric(
+                          vertical: screenHeight * 0.05),
+                      child: CircleAvatar(
+                        radius: 64,
+                        backgroundImage: NetworkImage(cubit.imageUrl),
+                        backgroundColor: Colors.white,
+                        onBackgroundImageError: (exception, stackTrace) {
+                          setState(() {
+                            cubit.imageUrl =
+                                'https://static.vecteezy.com/system/resources/previews/009/292/244/original/default-avatar-icon-of-social-media-user-vector.jpg';
+                          });
+                        },
+                      ))),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

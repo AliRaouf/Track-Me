@@ -34,18 +34,25 @@ class _SingleExerciseScreenState extends State<SingleExerciseScreen> {
             actions: [
               IconButton(
                   onPressed: () {
-                    setState(() {
-                      ExerciseCubit.get(context).saveExercise(
-                        "${widget.exerciseList![widget.index].name}",
-                        "${widget.exerciseList![widget.index].bodyPart}",
-                        "${widget.exerciseList![widget.index].equipment}",
-                        "${widget.exerciseList![widget.index].target}",
-                        "${widget.exerciseList![widget.index].gifUrl}",
-                        widget.exerciseList![widget.index].instructions,
-                        widget.exerciseList![widget.index].secondaryMuscles,
-                      );
-                    });
-                    print(cubit.isExist);
+                    String exerciseName = (widget.exerciseList![widget.index].name == "3/4 sit-up")
+                        ? "3 to 4 sit up"
+                        : widget.exerciseList![widget.index].name!;
+                    if(cubit.isExist==false) {
+                      setState(() {
+                        ExerciseCubit.get(context).saveExercise(
+                          exerciseName,
+                          "${widget.exerciseList![widget.index].bodyPart}",
+                          "${widget.exerciseList![widget.index].equipment}",
+                          "${widget.exerciseList![widget.index].target}",
+                          "${widget.exerciseList![widget.index].gifUrl}",
+                          widget.exerciseList![widget.index].instructions,
+                          widget.exerciseList![widget.index].secondaryMuscles,
+                        );
+                      });
+                      print(cubit.isExist);
+                    }else if(cubit.isExist==true){
+                      cubit.removeFromFavorite(exerciseName);
+                    }
                   },
                   icon: (cubit.isExist ?? false)
                       ? Icon(

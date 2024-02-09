@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
               MaterialPageRoute(builder: (context) => const HomeScreen()));
         } else if (state is LoginErrorState) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.error.toString())));
+              .showSnackBar(SnackBar(content: Text(LoginCubit.get(context).error)));
         }
       },
       builder: (context, state) {
@@ -113,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onpressed: () {
                       loginCubit.loginUser(
                           emailController.text, passwordController.text);
+                      print(state);
                     },
                   ),
                 ],
